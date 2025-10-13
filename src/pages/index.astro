@@ -8,6 +8,7 @@ import { WorkExperience } from "@/components/ui/work-experience";
 import { Projects } from "@/components/ui/projects";
 import { Contact } from "@/components/ui/contact";
 import { Footer } from "@/components/ui/footer";
+import { FluidCursor } from "@/components/ui/fluid-cursor";
 ---
 
 <html lang="en">
@@ -19,6 +20,7 @@ import { Footer } from "@/components/ui/footer";
 		<title>Sanchit - Developer Portfolio</title>
 	</head>
 	<body class="bg-page-bg">
+		<FluidCursor client:load />
 		<Navbar client:load />
 		<section class="min-h-screen flex flex-col items-center justify-center px-4 gap-20">
 			<Hero client:load />
@@ -26,19 +28,19 @@ import { Footer } from "@/components/ui/footer";
 		</section>
 		
 		<div id="about">
-			<About client:load />
+			<About client:visible />
 		</div>
 
 		<div id="work">
-			<WorkExperience client:load />
+			<WorkExperience client:visible />
 		</div>
 
 		<div id="projects">
-			<Projects client:load />
+			<Projects client:visible />
 		</div>
 
 		<div id="contact">
-			<Contact client:load />
+			<Contact client:visible />
 		</div>
 
 		<Footer />

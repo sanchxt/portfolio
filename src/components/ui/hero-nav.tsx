@@ -3,7 +3,7 @@ import { NAV_LINKS } from "@/constants/nav-links";
 
 export const HeroNav = () => {
   return (
-    <nav className="flex gap-8 md:gap-12">
+    <nav className="grid grid-cols-2 sm:flex gap-8 md:gap-12">
       {NAV_LINKS.map((link) => (
         <a
           key={link.href}
