@@ -1,7 +1,8 @@
 ---
 import "../styles/global.css";
-import { Typography } from "@/components/ui/typography";
 import { Navbar } from "@/components/ui/navbar";
+import { Hero } from "@/components/ui/hero";
+import { HeroNav } from "@/components/ui/hero-nav";
 ---
 
 <html lang="en">
@@ -10,14 +11,13 @@ import { Navbar } from "@/components/ui/navbar";
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Portfolio - Typography Demo</title>
+		<title>Sanchit - Developer Portfolio</title>
 	</head>
 	<body class="bg-page-bg">
 		<Navbar client:load />
-		<div class="container mx-auto px-4 py-12 max-w-4xl mt-20">
-			<Typography client:load variant="display" font="display">
-				Bitcount Display
-			</Typography>
+		<div class="min-h-screen flex flex-col items-center justify-center px-4 gap-20">
+			<Hero client:load />
+			<HeroNav client:load />
 		</div>
 	</body>
 </html>

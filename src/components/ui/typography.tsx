@@ -25,6 +25,7 @@ const typographyVariants = cva("", {
       sans: "font-sans",
       serif: "font-serif",
       display: "font-display",
+      cursive: "font-cursive",
     },
   },
   defaultVariants: {
