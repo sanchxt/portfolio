@@ -3,6 +3,11 @@ import "../styles/global.css";
 import { Navbar } from "@/components/ui/navbar";
 import { Hero } from "@/components/ui/hero";
 import { HeroNav } from "@/components/ui/hero-nav";
+import { About } from "@/components/ui/about";
+import { WorkExperience } from "@/components/ui/work-experience";
+import { Projects } from "@/components/ui/projects";
+import { Contact } from "@/components/ui/contact";
+import { Footer } from "@/components/ui/footer";
 ---
 
 <html lang="en">
@@ -15,9 +20,19 @@ import { HeroNav } from "@/components/ui/hero-nav";
 	</head>
 	<body class="bg-page-bg">
 		<Navbar client:load />
-		<div class="min-h-screen flex flex-col items-center justify-center px-4 gap-20">
+		<section class="min-h-screen flex flex-col items-center justify-center px-4 gap-20">
 			<Hero client:load />
 			<HeroNav client:load />
-		</div>
+		</section>
+		
+		<About client:load />
+
+		<WorkExperience client:load />
+
+		<Projects client:load />
+
+	<Contact client:load />
+
+	<Footer />
 	</body>
 </html>

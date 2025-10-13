@@ -11,7 +11,7 @@ export const Hero = () => {
         className="font-sans font-light text-text-heading"
         style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)" }}
       >
-        , software developer
+        , Software Developer
       </span>
     </h1>
   );
