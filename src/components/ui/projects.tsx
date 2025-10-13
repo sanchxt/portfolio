@@ -13,40 +13,29 @@ interface Project {
 
 const PROJECTS: Project[] = [
   {
-    title: "E-Commerce Platform",
+    title: "Dev-10",
     description:
-      "A full-stack e-commerce solution with real-time inventory management, payment integration, and admin dashboard. Built with modern architecture for scalability.",
-    tags: ["React", "Node.js", "PostgreSQL", "Stripe"],
+      "A full-stack application enabling users to explore, rate, and contribute resource collections for programming languages. Features secure authentication with JWT tokens and bcryptjs password hashing, with advanced state management using Redux Toolkit and Zustand.",
+    tags: ["React", "TypeScript", "Redux Toolkit", "Node.js", "Express", "MongoDB", "Docker"],
     image: "/placeholder-project-1.jpg",
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com/example",
+    githubUrl: "https://www.github.com/sanchxt/Dev-10",
   },
   {
-    title: "Task Management App",
+    title: "Image Converter - Chrome Extension",
     description:
-      "Collaborative project management tool with real-time updates, team collaboration features, and advanced analytics. Designed for remote teams.",
-    tags: ["Next.js", "TypeScript", "MongoDB", "Socket.io"],
+      "Chrome extension for image format conversion (PNG, JPG, WEBP, AVIF, HEIC) and advanced editing capabilities including brightness, contrast, and saturation adjustments. Achieved 80+ active users with faster processing than online alternatives using the Canvas API.",
+    tags: ["React", "TypeScript", "TailwindCSS", "WXT"],
     image: "/placeholder-project-2.jpg",
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com/example",
+    liveUrl: "https://chromewebstore.google.com/detail/image-converter/gcekcldbeflpkgoedcjpafndgjkmpkdk",
+    githubUrl: "https://github.com/sanchxt/image-converter",
   },
   {
-    title: "AI Content Generator",
+    title: "Pathfinding Visualizer",
     description:
-      "Intelligent content creation platform leveraging machine learning to generate high-quality content. Features include templates, SEO optimization, and multi-language support.",
-    tags: ["Python", "FastAPI", "React", "OpenAI"],
+      "Interactive visualizer for multiple pathfinding algorithms (A*, Dijkstra, BFS, DFS) featuring automated maze generation and customizable visualization speed. Built with custom React hooks and Context API for efficient state management.",
+    tags: ["React", "TypeScript", "TailwindCSS"],
     image: "/placeholder-project-3.jpg",
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com/example",
-  },
-  {
-    title: "Social Media Dashboard",
-    description:
-      "Unified dashboard for managing multiple social media accounts. Schedule posts, analyze engagement metrics, and monitor brand mentions across platforms.",
-    tags: ["Vue.js", "Express", "Redis", "GraphQL"],
-    image: "/placeholder-project-4.jpg",
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com/example",
+    githubUrl: "https://github.com/sanchxt/pathfinding-visualizer",
   },
 ];
 

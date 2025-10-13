@@ -2,22 +2,16 @@ import { Typography } from "./typography";
 
 const WORK_EXPERIENCES = [
   {
-    company: "Company Name A",
-    period: "Feb. 2025 - July 2025",
+    company: "Fullstack Developer - Ebslon Infotech",
+    period: "Jan. 2025 - Present",
     description:
-      "Led development of scalable web applications using modern tech stack. Implemented CI/CD pipelines and improved system performance by 40%.",
+      "Developed ERP systems using MERN and PERN stacks. Managed DevOps, CI/CD pipelines (Jenkins, GitHub Actions), and VPS infrastructure (Hetzner, Contabo). Implemented real-time features with WebSockets, state management (Zustand, Redux, TanStack), and Redis caching.",
   },
   {
-    company: "Company Name B",
-    period: "Aug. 2024 - Jan. 2025",
+    company: "Frontend Intern - Bestor",
+    period: "Nov. 2021 - Jan. 2022",
     description:
-      "Built responsive user interfaces and collaborated with cross-functional teams. Mentored junior developers and established coding standards.",
-  },
-  {
-    company: "Company Name C",
-    period: "Jan. 2024 - July 2024",
-    description:
-      "Developed and maintained RESTful APIs serving millions of users. Optimized database queries and reduced server response time significantly.",
+      "Designed and improved UI/UX of websites in Shopify. Collaborated with developers and SEO team to enhance user experience and site performance.",
   },
 ];
 
