@@ -53,12 +53,12 @@ const Navbar = ({ className, ...props }: NavbarProps) => {
             <div className="flex flex-1 justify-end items-center">
               <button
                 onClick={toggleTheme}
-                className="hidden sm:inline text-xs sm:text-sm md:text-base lg:text-lg font-display text-text-primary hover:text-text-accent transition-colors cursor-pointer"
+                className="hidden sm:inline text-xs sm:text-sm md:text-base lg:text-lg font-sans text-text-primary hover:text-text-accent transition-colors cursor-pointer"
                 aria-label={`Switch to ${
                   theme === "dark" ? "light" : "dark"
                 } mode`}
               >
-                {theme === "dark" ? "light mode." : "dark mode."}
+                {theme === "dark" ? "light" : "dark"} mode.
               </button>
               <button
                 onClick={toggleMenu}
