@@ -1,4 +1,8 @@
-# Prerequisites
+# Portfolio Website
+
+I am creating a very minimalistic portfolio website for myself (a developer).
+
+## Prerequisites
 
 - Run the 'tree' command to get an idea of the project's code structure.
 - You run in an environment where ast-grep (asg) is available; whenever a search requires syntax-aware or structural matching, default to asg and avoid falling back to text-only tools like 'grep' unless I explicitly request a plain-text search. Important note: I have set the alias for ast-grep as `asg`, so always use this instead of the usual `sg`.

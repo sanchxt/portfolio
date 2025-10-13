@@ -45,6 +45,24 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
+  /* Custom Portfolio Colors */
+  --color-page-bg: var(--page-bg);
+  --color-section-bg: var(--section-bg);
+  --color-section-bg-alt: var(--section-bg-alt);
+  --color-hero-bg: var(--hero-bg);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-text-heading: var(--text-heading);
+  --color-text-accent: var(--text-accent);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-default: var(--border-default);
+  --color-highlight: var(--highlight);
+  --color-highlight-foreground: var(--highlight-foreground);
+  --color-nav-bg: var(--nav-bg);
+  --color-nav-text: var(--nav-text);
+  --color-nav-border: var(--nav-border);
+
   /* Font Families */
   --font-display: "Bitcount Prop Double", ui-monospace, monospace;
   --font-display--font-variation-settings: "slnt" 0, "CRSV" 0.5, "ELSH" 0, "ELXP" 0;
@@ -55,7 +73,7 @@
 :root {
   --radius: 0.625rem;
 
-  /* Colors */
+  /* Base Colors */
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -87,9 +105,28 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* Custom Portfolio Colors - Light Mode */
+  --page-bg: oklch(1 0 0); /* Pure white page background */
+  --section-bg: oklch(0.99 0 0); /* Subtle off-white for sections */
+  --section-bg-alt: oklch(0.97 0 0); /* Alternating section background */
+  --hero-bg: oklch(1 0 0); /* Hero section background */
+  --text-primary: oklch(0.145 0 0); /* Primary text - near black */
+  --text-secondary: oklch(0.4 0 0); /* Secondary text - medium gray */
+  --text-tertiary: oklch(0.556 0 0); /* Tertiary text - light gray */
+  --text-heading: oklch(0.145 0 0); /* Headings - near black */
+  --text-accent: oklch(0.205 0 0); /* Accent text */
+  --border-subtle: oklch(0.95 0 0); /* Subtle borders */
+  --border-default: oklch(0.922 0 0); /* Default borders */
+  --highlight: oklch(0.205 0 0); /* Highlight color */
+  --highlight-foreground: oklch(0.985 0 0); /* Highlight text */
+  --nav-bg: oklch(1 0 0 / 80%); /* Navbar background with transparency */
+  --nav-text: oklch(0.556 0 0); /* Navbar text */
+  --nav-border: oklch(0.922 0 0); /* Navbar border */
 }
 
 .dark {
+  /* Base Colors */
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
@@ -121,6 +158,24 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  /* Custom Portfolio Colors - Dark Mode */
+  --page-bg: oklch(0.145 0 0); /* Dark background */
+  --section-bg: oklch(0.18 0 0); /* Slightly lighter section bg */
+  --section-bg-alt: oklch(0.205 0 0); /* Alternating section background */
+  --hero-bg: oklch(0.145 0 0); /* Hero section background */
+  --text-primary: oklch(0.985 0 0); /* Primary text - near white */
+  --text-secondary: oklch(0.708 0 0); /* Secondary text - medium gray */
+  --text-tertiary: oklch(0.556 0 0); /* Tertiary text - darker gray */
+  --text-heading: oklch(0.985 0 0); /* Headings - near white */
+  --text-accent: oklch(0.922 0 0); /* Accent text - light gray */
+  --border-subtle: oklch(1 0 0 / 5%); /* Very subtle borders */
+  --border-default: oklch(1 0 0 / 10%); /* Default borders */
+  --highlight: oklch(0.922 0 0); /* Highlight color */
+  --highlight-foreground: oklch(0.205 0 0); /* Highlight text */
+  --nav-bg: oklch(0.145 0 0 / 80%); /* Navbar background with transparency */
+  --nav-text: oklch(0.708 0 0); /* Navbar text */
+  --nav-border: oklch(1 0 0 / 10%); /* Navbar border */
 }
 
 @layer base {
@@ -128,6 +183,6 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-page-bg text-text-primary font-sans;
   }
 }

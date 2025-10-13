@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import { Typography } from "@/components/ui/typography";
+import { Navbar } from "@/components/ui/navbar";
 ---
 
 <html lang="en">
@@ -11,8 +12,9 @@ import { Typography } from "@/components/ui/typography";
 		<meta name="generator" content={Astro.generator} />
 		<title>Portfolio - Typography Demo</title>
 	</head>
-	<body>
-		<div class="container mx-auto px-4 py-12 max-w-4xl">
+	<body class="bg-page-bg">
+		<Navbar client:load />
+		<div class="container mx-auto px-4 py-12 max-w-4xl mt-20">
 			<!-- Display Font Examples -->
 			<Typography client:load variant="display" font="display">
 				Bitcount Display
@@ -20,7 +22,7 @@ import { Typography } from "@/components/ui/typography";
 
 			<div class="mt-12 space-y-8">
 				<!-- Sans Font Examples -->
-				<section>
+				<section class="bg-section-bg p-6 rounded-lg">
 					<Typography client:load variant="h2" font="sans">
 						Nunito Sans - Headings & Body
 					</Typography>
@@ -35,7 +37,7 @@ import { Typography } from "@/components/ui/typography";
 				</section>
 
 				<!-- Serif Font Examples -->
-				<section>
+				<section class="bg-section-bg-alt p-6 rounded-lg">
 					<Typography client:load variant="h2" font="serif">
 						Merriweather - Elegant Serif
 					</Typography>
@@ -51,7 +53,7 @@ import { Typography } from "@/components/ui/typography";
 				</section>
 
 				<!-- Display Font Examples -->
-				<section>
+				<section class="bg-section-bg p-6 rounded-lg">
 					<Typography client:load variant="h2" font="display">
 						Bitcount Prop Double - Display
 					</Typography>
@@ -62,7 +64,7 @@ import { Typography } from "@/components/ui/typography";
 				</section>
 
 				<!-- Size Variants -->
-				<section>
+				<section class="bg-section-bg-alt p-6 rounded-lg">
 					<Typography client:load variant="h2">Typography Variants</Typography>
 					<Typography client:load variant="h3">Heading 3</Typography>
 					<Typography client:load variant="h4">Heading 4</Typography>
