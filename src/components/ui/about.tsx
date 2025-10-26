@@ -22,9 +22,9 @@ export const About = () => {
       <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
         {/* image */}
         <div className="flex-shrink-0">
-          <div className="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full bg-border-default overflow-hidden">
+          <div className="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full bg-border-subtle dark:bg-accent overflow-hidden">
             <img
-              src="/placeholder-avatar.jpg"
+              src="/portrait.webp"
               alt="Sanchit"
               className="w-full h-full object-cover"
             />
