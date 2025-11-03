@@ -13,12 +13,12 @@ interface Project {
 
 const PROJECTS: Project[] = [
   {
-    title: "Dev-10",
+    title: "Isame Load Balancer",
     description:
-      "A full-stack application enabling users to explore, rate, and contribute resource collections for programming languages. Features secure authentication with JWT tokens and bcryptjs password hashing, with advanced state management using Redux Toolkit and Zustand.",
-    tags: ["React", "TypeScript", "Redux Toolkit", "Node.js", "Express", "MongoDB", "Docker"],
-    image: "/placeholder-project-1.jpg",
-    githubUrl: "https://www.github.com/sanchxt/Dev-10",
+      "Production-ready HTTP/HTTPS load balancer in Go featuring multiple algorithms (Round-Robin, Weighted, Least Connections), circuit breaker pattern, automatic health checks, per-client rate limiting, and Prometheus metrics. Supports TLS 1.2/1.3 with configurable cipher suites and graceful shutdown.",
+    tags: ["Go", "Distributed Systems", "TLS/HTTPS", "Prometheus", "YAML"],
+    image: "/placeholder-project-3.jpg",
+    githubUrl: "https://github.com/sanchxt/isame-lb",
   },
   {
     title: "Image Converter - Chrome Extension",
@@ -26,16 +26,25 @@ const PROJECTS: Project[] = [
       "Chrome extension for image format conversion (PNG, JPG, WEBP, AVIF, HEIC) and advanced editing capabilities including brightness, contrast, and saturation adjustments. Achieved 80+ active users with faster processing than online alternatives using the Canvas API.",
     tags: ["React", "TypeScript", "TailwindCSS", "WXT"],
     image: "/placeholder-project-2.jpg",
-    liveUrl: "https://chromewebstore.google.com/detail/image-converter/gcekcldbeflpkgoedcjpafndgjkmpkdk",
+    liveUrl:
+      "https://chromewebstore.google.com/detail/image-converter/gcekcldbeflpkgoedcjpafndgjkmpkdk",
     githubUrl: "https://github.com/sanchxt/image-converter",
   },
   {
-    title: "Pathfinding Visualizer",
+    title: "Dev-10",
     description:
-      "Interactive visualizer for multiple pathfinding algorithms (A*, Dijkstra, BFS, DFS) featuring automated maze generation and customizable visualization speed. Built with custom React hooks and Context API for efficient state management.",
-    tags: ["React", "TypeScript", "TailwindCSS"],
-    image: "/placeholder-project-3.jpg",
-    githubUrl: "https://github.com/sanchxt/pathfinding-visualizer",
+      "A full-stack application enabling users to explore, rate, and contribute resource collections for programming languages. Features secure authentication with JWT tokens and bcryptjs password hashing, with advanced state management using Redux Toolkit and Zustand.",
+    tags: [
+      "React",
+      "TypeScript",
+      "Redux Toolkit",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Docker",
+    ],
+    image: "/placeholder-project-1.jpg",
+    githubUrl: "https://www.github.com/sanchxt/Dev-10",
   },
 ];
 
