@@ -1,10 +1,10 @@
 import { Typography } from "./typography";
 
 const SOCIAL_LINKS = [
+  { label: "twitter / x", href: "https://twitter.com/sanchitcodes" },
+  { label: "e-mail", href: "mailto:sanchxt.dev@gmail.com" },
   { label: "github", href: "https://github.com/sanchxt" },
   { label: "instagram", href: "https://instagram.com/sanch.xt" },
-  { label: "twitter / x", href: "https://twitter.com/sanchxtdev" },
-  { label: "e-mail", href: "mailto:sanchxt.dev@gmail.com" },
 ];
 
 export const About = () => {
@@ -24,8 +24,8 @@ export const About = () => {
         <div className="flex-shrink-0">
           <div className="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full bg-border-subtle dark:bg-accent overflow-hidden">
             <img
-              src="/portrait.webp"
-              alt="Sanchit"
+              src="/images/portrait.webp"
+              alt="An illustration of a man, representing Sanchit Bhalla, saying hello by waving a hand"
               className="w-full h-full object-cover"
             />
           </div>

@@ -11,7 +11,7 @@ const SOCIAL_LINKS = [
   },
   {
     name: "twitter",
-    url: "https://twitter.com/sanchxtdev",
+    url: "https://twitter.com/sanchitcodes",
   },
   {
     name: "dev.to",

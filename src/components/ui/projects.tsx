@@ -17,34 +17,26 @@ const PROJECTS: Project[] = [
     description:
       "Production-ready HTTP/HTTPS load balancer in Go featuring multiple algorithms (Round-Robin, Weighted, Least Connections), circuit breaker pattern, automatic health checks, per-client rate limiting, and Prometheus metrics. Supports TLS 1.2/1.3 with configurable cipher suites and graceful shutdown.",
     tags: ["Go", "Distributed Systems", "TLS/HTTPS", "Prometheus", "YAML"],
-    image: "/placeholder-project-3.jpg",
+    image: "/images/project-1-v1.webp",
     githubUrl: "https://github.com/sanchxt/isame-lb",
+  },
+  {
+    title: "Taskflow",
+    description:
+      "A CLI/TUI-based task and project management application built in Go. Features include project management with aliases, custom views, task templates, fuzzy search, natural language queries, export/import functionality (JSON, CSV, Markdown), and theming support. Built with Bubble Tea for the TUI interface and SQLite for data persistence.",
+    tags: ["Go", "CLI", "TUI", "SQLite", "Bubble Tea", "Cobra", "Viper"],
+    image: "/images/project-2-v1.webp",
+    githubUrl: "https://github.com/sanchxt/golang-task-management",
   },
   {
     title: "Image Converter - Chrome Extension",
     description:
-      "Chrome extension for image format conversion (PNG, JPG, WEBP, AVIF, HEIC) and advanced editing capabilities including brightness, contrast, and saturation adjustments. Achieved 80+ active users with faster processing than online alternatives using the Canvas API.",
-    tags: ["React", "TypeScript", "TailwindCSS", "WXT"],
-    image: "/placeholder-project-2.jpg",
+      "Chrome extension for image format conversion (PNG, JPG, WEBP, AVIF, HEIC) and advanced editing capabilities including brightness, contrast, and saturation adjustments. Uses purely native processing using the Canvas API. Has 130+ active users.",
+    tags: ["React", "TypeScript", "WXT", "TailwindCSS"],
+    image: "/images/project-3-v1.webp",
     liveUrl:
       "https://chromewebstore.google.com/detail/image-converter/gcekcldbeflpkgoedcjpafndgjkmpkdk",
-    githubUrl: "https://github.com/sanchxt/image-converter",
-  },
-  {
-    title: "Dev-10",
-    description:
-      "A full-stack application enabling users to explore, rate, and contribute resource collections for programming languages. Features secure authentication with JWT tokens and bcryptjs password hashing, with advanced state management using Redux Toolkit and Zustand.",
-    tags: [
-      "React",
-      "TypeScript",
-      "Redux Toolkit",
-      "Node.js",
-      "Express",
-      "MongoDB",
-      "Docker",
-    ],
-    image: "/placeholder-project-1.jpg",
-    githubUrl: "https://www.github.com/sanchxt/Dev-10",
+    githubUrl: "https://github.com/sanchxt/image-converter-extension",
   },
 ];
 
@@ -212,7 +204,7 @@ export const Projects = () => {
         </div>
 
         {/* right side - sticky image (desktop) */}
-        <div className="hidden lg:block w-full lg:w-[45%] flex-shrink-0 self-stretch">
+        <div className="hidden lg:block w-full lg:w-[55%] flex-shrink-0 self-stretch">
           <div className="sticky top-44">
             <div className="w-full h-[480px] bg-border-default rounded-lg overflow-hidden shadow-lg">
               <img
