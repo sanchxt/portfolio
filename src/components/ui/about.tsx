@@ -26,7 +26,7 @@ export const About = () => {
             <img
               src="/images/portrait.webp"
               alt="An illustration of a man, representing Sanchit Bhalla, saying hello by waving a hand"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           </div>
         </div>
