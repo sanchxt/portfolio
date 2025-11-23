@@ -29,14 +29,13 @@ const PROJECTS: Project[] = [
     githubUrl: "https://github.com/sanchxt/golang-task-management",
   },
   {
-    title: "Image Converter - Chrome Extension",
+    title: "Warpscew",
     description:
-      "Chrome extension for image format conversion (PNG, JPG, WEBP, AVIF, HEIC) and advanced editing capabilities including brightness, contrast, and saturation adjustments. Uses purely native processing using the Canvas API. Has 130+ active users.",
-    tags: ["React", "TypeScript", "WXT", "TailwindCSS"],
+      "An ASCII layout builder with smart grid lines, auto layouts, and artboards for different screen sizes. Supports copying or downloading layouts as .md or .txt files. Useful for quickly designing layouts and describing them in AI chats to communicate design intentions effectively.",
+    tags: ["Astro", "React", "Zustand", "TypeScript", "Radix UI"],
     image: "/images/project-3-v1.webp",
-    liveUrl:
-      "https://chromewebstore.google.com/detail/image-converter/gcekcldbeflpkgoedcjpafndgjkmpkdk",
-    githubUrl: "https://github.com/sanchxt/image-converter-extension",
+    liveUrl: "https://warpscew.sanchxt.com",
+    githubUrl: "https://github.com/sanchxt/ascii-layout-builder",
   },
 ];
 

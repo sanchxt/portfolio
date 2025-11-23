@@ -2,28 +2,28 @@ import { Typography } from "./typography";
 
 const SOCIAL_LINKS = [
   {
-    name: "github",
-    url: "https://github.com/sanchxt",
-  },
-  {
-    name: "instagram",
-    url: "https://instagram.com/sanch.xt",
+    name: "email",
+    url: "mailto:sanchxt.dev@gmail.com",
   },
   {
     name: "twitter",
     url: "https://twitter.com/sanchitcodes",
   },
   {
-    name: "dev.to",
-    url: "https://dev.to/sanchxt",
+    name: "github",
+    url: "https://github.com/sanchxt",
   },
   {
     name: "linkedin",
     url: "https://linkedin.com/in/sanchit-bhalla",
   },
   {
-    name: "email",
-    url: "mailto:sanchxt.dev@gmail.com",
+    name: "instagram",
+    url: "https://instagram.com/sanch.xt",
+  },
+  {
+    name: "dev.to",
+    url: "https://dev.to/sanchxt",
   },
 ];
 
