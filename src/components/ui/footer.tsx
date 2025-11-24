@@ -7,9 +7,13 @@ export const Footer = () => {
             sncht.
           </div>
 
-          <p className="text-sm md:text-base font-semibold font-sans text-text-primary hover:text-text-heading transition-colors duration-200 hover:underline underline-offset-4">
-            one more thing TBA soon :)
-          </p>
+          <a
+            target="_blank"
+            href="https://newsletter.sanchxt.com"
+            className="text-sm md:text-base font-semibold font-sans text-text-primary hover:text-text-heading transition-colors duration-200 hover:underline underline-offset-4"
+          >
+            checkout my newsletter
+          </a>
         </div>
       </div>
     </footer>
