@@ -1,7 +1,7 @@
 import { useState, useCallback, useMemo, useRef, useEffect } from "react";
 import { useThree } from "@react-three/fiber";
 import { GalleryCanvas } from "./gallery-canvas";
-import { GalleryImage } from "./gallery-image";
+import { GalleryImageWithFallback } from "./gallery-image";
 import { useGalleryScroll } from "./use-gallery-scroll";
 
 interface DesignItem {
@@ -53,7 +53,9 @@ const GalleryScene = ({
       const scaleMultiplier = 1 - depthLayer * 0.1;
 
       return {
-        ...design,
+        id: design.id,
+        image: design.image,
+        color: design.color,
         baseX: index * (itemWidth + gap),
         y: yOffset,
         z: zOffset,
@@ -83,9 +85,10 @@ const GalleryScene = ({
           mod(rawXWithParallax + totalWidth / 2, totalWidth) - totalWidth / 2;
 
         return (
-          <GalleryImage
+          <GalleryImageWithFallback
             key={item.id}
             url={item.image}
+            color={item.color}
             index={item.id}
             position={[wrappedX, item.y, item.z]}
             scale={item.scale}

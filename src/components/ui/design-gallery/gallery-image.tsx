@@ -1,4 +1,4 @@
-import { useRef, useMemo, useState } from "react";
+import { useRef, useMemo, useState, Suspense } from "react";
 import { useFrame, useLoader } from "@react-three/fiber";
 import * as THREE from "three";
 import { imageVertexShader, imageFragmentShader } from "./shaders/image-shader";
@@ -24,6 +24,7 @@ export const GalleryImage = ({
   const meshRef = useRef<THREE.Mesh>(null);
   const [isHovered, setIsHovered] = useState(false);
   const hoverRef = useRef(0);
+  const opacityRef = useRef(0);
 
   const texture = useLoader(THREE.TextureLoader, url);
 
@@ -36,7 +37,7 @@ export const GalleryImage = ({
         uMouse: { value: new THREE.Vector2(0.5, 0.5) },
         uHover: { value: 0 },
         uResolution: { value: new THREE.Vector2(1, 1) },
-        uOpacity: { value: 1 },
+        uOpacity: { value: 0 },
       },
       vertexShader: imageVertexShader,
       fragmentShader: imageFragmentShader,
@@ -48,6 +49,10 @@ export const GalleryImage = ({
     if (!meshRef.current || !shaderMaterial) return;
 
     const time = state.clock.getElapsedTime();
+
+    // Fade-in animation
+    opacityRef.current += (1 - opacityRef.current) * 0.05;
+    shaderMaterial.uniforms.uOpacity.value = opacityRef.current;
 
     const targetHover = isHovered ? 1 : 0;
     hoverRef.current += (targetHover - hoverRef.current) * 0.1;
@@ -83,6 +88,18 @@ export const GalleryImage = ({
       <planeGeometry args={[1, 1, 32, 32]} />
       <primitive object={shaderMaterial} attach="material" />
     </mesh>
+  );
+};
+
+export const GalleryImageWithFallback = ({
+  url,
+  color,
+  ...props
+}: GalleryImageProps & { color: string }) => {
+  return (
+    <Suspense fallback={<PlaceholderImage color={color} {...props} />}>
+      <GalleryImage url={url} {...props} />
+    </Suspense>
   );
 };
 
