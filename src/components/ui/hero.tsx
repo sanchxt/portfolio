@@ -9,9 +9,9 @@ export const Hero = () => {
       </span>
       <span
         className="font-sans font-light text-text-heading"
-        style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)" }}
+        style={{ fontSize: "clamp(1.25rem, 4vw, 2.5rem)" }}
       >
-        , Software Developer
+        , Software Developer / Designer
       </span>
     </h1>
   );

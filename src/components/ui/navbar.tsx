@@ -26,9 +26,12 @@ const Navbar = ({ className, ...props }: NavbarProps) => {
 
           {/* sncht */}
           <div className="hidden sm:flex flex-1 justify-center">
-            <span className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-black font-sans font-display text-text-heading">
+            <a
+              href="/"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-black font-sans font-display text-text-heading"
+            >
               sncht.
-            </span>
+            </a>
           </div>
 
           {/* theme toggle */}

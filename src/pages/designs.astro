@@ -1,0 +1,47 @@
+---
+import "../styles/global.css";
+import { Navbar } from "@/components/ui/navbar";
+import { Footer } from "@/components/ui/footer";
+import { FluidCursor } from "@/components/ui/fluid-cursor";
+import { DesignGallery } from "@/components/ui/design-gallery";
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/icon.webp" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Designs - Sanchit</title>
+	</head>
+	<body class="bg-page-bg">
+		<FluidCursor client:load />
+		<Navbar client:load />
+
+		<main class="min-h-screen pt-32 pb-20">
+			<div class="w-full max-w-7xl mx-auto px-4">
+				{/* Page title */}
+				<div class="mb-12">
+					<h1 class="text-4xl md:text-5xl lg:text-6xl font-semibold text-text-heading">
+						design work
+					</h1>
+					<p class="mt-6 text-lg md:text-xl text-text-secondary max-w-2xl">
+						A collection of design projects exploring user interfaces, visual concepts, and creative experiences.
+					</p>
+				</div>
+
+				{/* Infinite Gallery */}
+				<DesignGallery client:load />
+
+				{/* Additional info */}
+				<div class="mt-12 text-center">
+					<p class="text-text-tertiary text-sm">
+						More designs coming soon
+					</p>
+				</div>
+			</div>
+		</main>
+
+		<Footer />
+	</body>
+</html>

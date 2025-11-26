@@ -6,6 +6,7 @@ import { HeroNav } from "@/components/ui/hero-nav";
 import { About } from "@/components/ui/about";
 import { WorkExperience } from "@/components/ui/work-experience";
 import { Projects } from "@/components/ui/projects";
+import { DesignShowcase } from "@/components/ui/design-showcase";
 import { Contact } from "@/components/ui/contact";
 import { Footer } from "@/components/ui/footer";
 import { FluidCursor } from "@/components/ui/fluid-cursor";
@@ -37,6 +38,10 @@ import { FluidCursor } from "@/components/ui/fluid-cursor";
 
 		<div id="projects">
 			<Projects client:visible />
+		</div>
+
+		<div id="design">
+			<DesignShowcase client:visible />
 		</div>
 
 		<div id="contact">
