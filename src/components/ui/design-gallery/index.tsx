@@ -12,16 +12,68 @@ interface DesignItem {
   image: string;
 }
 
-// Design items - add your images to public/images/designs/
+const CDN_URL = import.meta.env.PUBLIC_CDN_URL || "";
+
+const getImageUrl = (filename: string) =>
+  CDN_URL ? `${CDN_URL}/${filename}` : `/images/designs/${filename}`;
+
 const DESIGNS: DesignItem[] = [
-  { id: 1, title: "Dashboard Concept", category: "UI/UX", color: "#3b4252", image: "/images/designs/design-1.webp" },
-  { id: 2, title: "Mobile Banking", category: "App Design", color: "#434c5e", image: "/images/designs/design-2.webp" },
-  { id: 3, title: "E-commerce Flow", category: "Web Design", color: "#4c566a", image: "/images/designs/design-3.webp" },
-  { id: 4, title: "Brand Identity", category: "Branding", color: "#2e3440", image: "/images/designs/design-4.webp" },
-  { id: 5, title: "Data Dashboard", category: "Dashboard", color: "#5e81ac", image: "/images/designs/design-5.webp" },
-  { id: 6, title: "Landing Page", category: "Marketing", color: "#81a1c1", image: "/images/designs/design-6.webp" },
-  { id: 7, title: "Social App", category: "Mobile", color: "#88c0d0", image: "/images/designs/design-7.webp" },
-  { id: 8, title: "Portfolio Site", category: "Web Design", color: "#8fbcbb", image: "/images/designs/design-8.webp" },
+  {
+    id: 1,
+    title: "Dashboard Concept",
+    category: "UI/UX",
+    color: "#3b4252",
+    image: getImageUrl("design-1.webp"),
+  },
+  {
+    id: 2,
+    title: "Mobile Banking",
+    category: "App Design",
+    color: "#434c5e",
+    image: getImageUrl("design-2.webp"),
+  },
+  {
+    id: 3,
+    title: "E-commerce Flow",
+    category: "Web Design",
+    color: "#4c566a",
+    image: getImageUrl("design-3.webp"),
+  },
+  {
+    id: 4,
+    title: "Brand Identity",
+    category: "Branding",
+    color: "#2e3440",
+    image: getImageUrl("design-4.webp"),
+  },
+  {
+    id: 5,
+    title: "Data Dashboard",
+    category: "Dashboard",
+    color: "#5e81ac",
+    image: getImageUrl("design-5.webp"),
+  },
+  {
+    id: 6,
+    title: "Landing Page",
+    category: "Marketing",
+    color: "#81a1c1",
+    image: getImageUrl("design-6.webp"),
+  },
+  {
+    id: 7,
+    title: "Social App",
+    category: "Mobile",
+    color: "#88c0d0",
+    image: getImageUrl("design-7.webp"),
+  },
+  {
+    id: 8,
+    title: "Portfolio Site",
+    category: "Web Design",
+    color: "#8fbcbb",
+    image: getImageUrl("design-8.webp"),
+  },
 ];
 
 interface GallerySceneProps {

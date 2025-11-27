@@ -28,6 +28,8 @@ jobs:
       
     - name: Build project
       run: pnpm build
+      env:
+        PUBLIC_CDN_URL: ${{ vars.PUBLIC_CDN_URL }}
       
     - name: Deploy to VPS
       uses: appleboy/scp-action@v0.1.7

@@ -50,7 +50,6 @@ export const GalleryImage = ({
 
     const time = state.clock.getElapsedTime();
 
-    // Fade-in animation
     opacityRef.current += (1 - opacityRef.current) * 0.05;
     shaderMaterial.uniforms.uOpacity.value = opacityRef.current;
 
