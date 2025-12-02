@@ -91,18 +91,19 @@ const GalleryScene = ({
 }: GallerySceneProps) => {
   const { viewport } = useThree();
 
-  const itemWidth = Math.min(viewport.width * 0.35, 3.5);
-  const itemHeight = itemWidth * 1.2;
-  const gap = itemWidth * 0.4;
+  // Size items for landscape desktop UI/UX mockups (16:10 aspect ratio)
+  const itemWidth = Math.min(viewport.width * 0.5, 5.5);
+  const itemHeight = itemWidth * 0.625; // 16:10 aspect ratio for desktop UI
+  const gap = itemWidth * 0.25;
   const totalWidth = DESIGNS.length * (itemWidth + gap);
 
   const items = useMemo(() => {
     return DESIGNS.map((design, index) => {
       const depthLayer = index % 3;
-      const zOffset = depthLayer * 0.5 - 0.5;
-      const yOffset = (depthLayer - 1) * 0.3;
+      const zOffset = depthLayer * 0.6 - 0.6;
+      const yOffset = (depthLayer - 1) * 0.5;
 
-      const scaleMultiplier = 1 - depthLayer * 0.1;
+      const scaleMultiplier = 1 - depthLayer * 0.08;
 
       return {
         id: design.id,
@@ -201,7 +202,7 @@ export const DesignGallery = () => {
   return (
     <div
       ref={handleRef}
-      className="relative w-full h-[60vh] min-h-[400px] max-h-[700px] overflow-hidden rounded-xl border border-border-subtle bg-gradient-to-br from-gray-100 to-gray-200 dark:from-[#0a0a0f] dark:to-[#15151f]"
+      className="relative w-full h-[75vh] min-h-[500px] max-h-[900px] overflow-hidden rounded-xl border border-border-subtle bg-gradient-to-br from-gray-100 to-gray-200 dark:from-[#0a0a0f] dark:to-[#15151f]"
     >
       <GalleryCanvas>
         <GalleryScene
