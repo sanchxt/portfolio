@@ -74,6 +74,27 @@ const DESIGNS: DesignItem[] = [
     color: "#8fbcbb",
     image: getImageUrl("design-8.webp"),
   },
+  {
+    id: 9,
+    title: "Design System",
+    category: "UI/UX",
+    color: "#a3be8c",
+    image: getImageUrl("design-9.webp"),
+  },
+  {
+    id: 10,
+    title: "Creative Studio",
+    category: "Branding",
+    color: "#b48ead",
+    image: getImageUrl("design-10.webp"),
+  },
+  {
+    id: 11,
+    title: "Web Application",
+    category: "Web Design",
+    color: "#bf616a",
+    image: getImageUrl("design-11.webp"),
+  },
 ];
 
 interface GallerySceneProps {
