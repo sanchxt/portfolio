@@ -4,6 +4,10 @@ import { Navbar } from "@/components/ui/navbar";
 import { Footer } from "@/components/ui/footer";
 import { FluidCursor } from "@/components/ui/fluid-cursor";
 
+const CDN_URL = import.meta.env.PUBLIC_CDN_URL || "";
+
+const getCdnAssetUrl = (path: string) => (CDN_URL ? `${CDN_URL}/${path}` : "");
+
 const VIDEO_AREAS = [
   {
     title: "Short-form edits",
@@ -41,6 +45,93 @@ const EDITING_VALUES = [
   {
     title: "Platform fit",
     copy: "A good edit respects where it will live: aspect ratio, captions, thumbnail frame, and viewer behavior.",
+  },
+];
+
+const VIDEO_CATEGORIES = [
+  {
+    title: "Short-form edits",
+    description:
+      "Vertical cuts for reels, shorts, launch clips, and social-first storytelling.",
+    videos: [
+      {
+        title: "Hook edit 01",
+        type: "Social edit",
+        duration: "00:30",
+        format: "9:16",
+        slug: "videos/short-form/hook-edit-01",
+      },
+      {
+        title: "Caption edit 01",
+        type: "Caption-led edit",
+        duration: "00:25",
+        format: "9:16",
+        slug: "videos/short-form/caption-edit-01",
+      },
+      {
+        title: "Trend edit 01",
+        type: "Paced social cut",
+        duration: "00:20",
+        format: "9:16",
+        slug: "videos/short-form/trend-edit-01",
+      },
+    ],
+  },
+  {
+    title: "Product visuals",
+    description:
+      "Software, feature, and launch videos built from screen recordings, typography, and motion beats.",
+    videos: [
+      {
+        title: "Product visual 01",
+        type: "Product video",
+        duration: "00:45",
+        format: "16:9",
+        slug: "videos/product/product-visual-01",
+      },
+      {
+        title: "Launch cut 01",
+        type: "Launch video",
+        duration: "00:40",
+        format: "16:9",
+        slug: "videos/product/launch-cut-01",
+      },
+    ],
+  },
+  {
+    title: "UI motion",
+    description:
+      "Interface-led edits for product flows, feature reveals, and motion-polished screen sequences.",
+    videos: [
+      {
+        title: "UI motion edit 01",
+        type: "Interface motion",
+        duration: "00:20",
+        format: "16:9",
+        slug: "videos/ui-motion/ui-motion-edit-01",
+      },
+      {
+        title: "Flow reveal 01",
+        type: "Flow walkthrough",
+        duration: "00:35",
+        format: "16:9",
+        slug: "videos/ui-motion/flow-reveal-01",
+      },
+    ],
+  },
+  {
+    title: "Story polish",
+    description:
+      "Narrative edits focused on trimming, sequence, sound, color, and emotional rhythm.",
+    videos: [
+      {
+        title: "Story polish 01",
+        type: "Narrative edit",
+        duration: "01:00",
+        format: "16:9",
+        slug: "videos/story/story-polish-01",
+      },
+    ],
   },
 ];
 ---
@@ -122,6 +213,91 @@ const EDITING_VALUES = [
                   </div>
                 </div>
               </article>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="w-full max-w-6xl mx-auto px-4 py-16 md:py-20">
+        <div class="mb-12 flex justify-end">
+          <h2 class="group relative inline-block text-right text-3xl md:text-4xl font-semibold text-text-heading cursor-pointer">
+            selected edits
+            <span class="absolute -bottom-1 right-0 h-1 w-20 bg-text-heading rounded-xs transition-all duration-300 ease-in-out group-hover:w-full"></span>
+          </h2>
+        </div>
+
+        <div class="space-y-16">
+          {
+            VIDEO_CATEGORIES.map((category) => (
+              <div>
+                <div class="mb-8 grid gap-4 border-t border-border-default pt-7 md:grid-cols-[minmax(0,0.7fr)_minmax(0,1fr)]">
+                  <h3 class="text-2xl md:text-3xl font-semibold text-text-heading">
+                    {category.title}
+                  </h3>
+                  <p class="text-text-secondary leading-relaxed md:text-right">
+                    {category.description}
+                  </p>
+                </div>
+
+                <div class="grid gap-8 md:grid-cols-2">
+                  {category.videos.map((video) => {
+                    const videoUrl = getCdnAssetUrl(`${video.slug}.mp4`);
+                    const posterUrl = getCdnAssetUrl(`${video.slug}.webp`);
+                    const filename = `${video.slug}.mp4`;
+
+                    return (
+                      <article class="group">
+                        <div class="overflow-hidden rounded-md border border-border-subtle bg-section-bg-alt">
+                          {videoUrl ? (
+                            <video
+                              controls
+                              preload="metadata"
+                              poster={posterUrl || undefined}
+                              class="aspect-video w-full bg-section-bg-alt object-cover"
+                            >
+                              <source src={videoUrl} type="video/mp4" />
+                            </video>
+                          ) : (
+                            <div class="flex aspect-video w-full flex-col justify-between bg-section-bg-alt p-5">
+                              <div>
+                                <p class="text-sm font-medium text-text-tertiary">
+                                  CDN video slot
+                                </p>
+                                <p class="mt-3 text-xl font-semibold text-text-heading">
+                                  {video.title}
+                                </p>
+                              </div>
+                              <p class="text-sm text-text-secondary">
+                                Upload {filename} to your CDN to enable playback.
+                              </p>
+                            </div>
+                          )}
+                        </div>
+
+                        <div class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                          <div>
+                            <h4 class="text-xl md:text-2xl font-semibold text-text-heading transition-colors duration-200 group-hover:text-text-accent">
+                              {video.title}
+                            </h4>
+                            <p class="mt-2 text-text-secondary">
+                              {video.type}
+                            </p>
+                          </div>
+
+                          <div class="flex gap-2 sm:justify-end">
+                            <span class="rounded-md border border-border-subtle px-2.5 py-1 text-xs font-medium text-text-tertiary">
+                              {video.duration}
+                            </span>
+                            <span class="rounded-md border border-border-subtle px-2.5 py-1 text-xs font-medium text-text-tertiary">
+                              {video.format}
+                            </span>
+                          </div>
+                        </div>
+                      </article>
+                    );
+                  })}
+                </div>
+              </div>
             ))
           }
         </div>
