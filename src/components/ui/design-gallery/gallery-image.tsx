@@ -1,4 +1,11 @@
-import { useRef, useMemo, useState, Suspense } from "react";
+import {
+  Component,
+  useRef,
+  useMemo,
+  useState,
+  Suspense,
+  type ReactNode,
+} from "react";
 import { useFrame, useLoader } from "@react-three/fiber";
 import * as THREE from "three";
 import { imageVertexShader, imageFragmentShader } from "./shaders/image-shader";
@@ -11,6 +18,35 @@ interface GalleryImageProps {
   scrollVelocity: number;
   mousePosition: { x: number; y: number };
   depthFactor: number;
+}
+
+class GalleryImageErrorBoundary extends Component<
+  {
+    children: ReactNode;
+    fallback: ReactNode;
+    resetKey: string;
+  },
+  { hasError: boolean }
+> {
+  state = { hasError: false };
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidUpdate(previousProps: { resetKey: string }) {
+    if (previousProps.resetKey !== this.props.resetKey && this.state.hasError) {
+      this.setState({ hasError: false });
+    }
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback;
+    }
+
+    return this.props.children;
+  }
 }
 
 export const GalleryImage = ({
@@ -95,10 +131,18 @@ export const GalleryImageWithFallback = ({
   color,
   ...props
 }: GalleryImageProps & { color: string }) => {
+  const fallback = <PlaceholderImage color={color} {...props} />;
+
+  if (!url) {
+    return fallback;
+  }
+
   return (
-    <Suspense fallback={<PlaceholderImage color={color} {...props} />}>
-      <GalleryImage url={url} {...props} />
-    </Suspense>
+    <GalleryImageErrorBoundary fallback={fallback} resetKey={url}>
+      <Suspense fallback={fallback}>
+        <GalleryImage url={url} {...props} />
+      </Suspense>
+    </GalleryImageErrorBoundary>
   );
 };
 

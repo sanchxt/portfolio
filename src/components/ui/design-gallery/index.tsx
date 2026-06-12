@@ -15,7 +15,7 @@ interface DesignItem {
 const CDN_URL = import.meta.env.PUBLIC_CDN_URL || "";
 
 const getImageUrl = (filename: string) =>
-  CDN_URL ? `${CDN_URL}/${filename}` : `/images/designs/${filename}`;
+  CDN_URL ? `${CDN_URL}/${filename}` : "";
 
 const DESIGNS: DesignItem[] = [
   {

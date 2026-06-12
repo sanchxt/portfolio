@@ -41,10 +41,10 @@ export const About = () => {
             variant="p"
             className="text-text-secondary leading-relaxed mb-6 mt-0 lg:w-[70%]"
           >
-            A passionate software developer with expertise in building modern
-            web applications. I love creating elegant solutions to complex
-            problems and constantly learning new technologies to stay at the
-            forefront of development.
+            I work across software engineering, UI/UX design, and video
+            editing. Most of my work sits at the intersection of structure and
+            feeling: building reliable interfaces, designing flows that feel
+            obvious, and shaping edits with clean rhythm and intent.
           </Typography>
 
           {/* socials */}

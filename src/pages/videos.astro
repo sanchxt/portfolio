@@ -3,34 +3,45 @@ import "../styles/global.css";
 import { Navbar } from "@/components/ui/navbar";
 import { Footer } from "@/components/ui/footer";
 import { FluidCursor } from "@/components/ui/fluid-cursor";
-import { DesignGallery } from "@/components/ui/design-gallery";
 
-const DESIGN_AREAS = [
+const VIDEO_AREAS = [
   {
-    title: "Product interfaces",
+    title: "Short-form edits",
     description:
-      "Dashboards, SaaS screens, app surfaces, and developer tools with calm hierarchy, reusable patterns, and fast scanning.",
-    details: ["Dashboards", "Web apps", "Developer tools", "Responsive UI"],
+      "Fast cuts, clean captions, hooks, retention-aware pacing, and platform-native edits for reels, shorts, and social clips.",
+    details: ["Hooks", "Captions", "Pacing", "Social formats"],
   },
   {
-    title: "UX flows",
+    title: "Product visuals",
     description:
-      "User journeys, wireframes, onboarding, empty states, and decision paths that make the next action feel obvious.",
-    details: ["Wireframes", "User flows", "Onboarding", "States"],
+      "Edits that explain software, interfaces, and launches through screen recordings, motion beats, typography, and clean transitions.",
+    details: ["Screen edits", "Launch videos", "UI motion", "Explainers"],
   },
   {
-    title: "Visual systems",
+    title: "Story polish",
     description:
-      "Typography, spacing, components, color, and interaction details that keep a product feeling consistent after the first screen.",
-    details: ["Components", "Typography", "Color systems", "Interaction polish"],
+      "Trimming, sequencing, sound cleanup, color balance, and rhythm work that makes raw footage feel intentional.",
+    details: ["Sequencing", "Sound", "Color", "Rhythm"],
   },
 ];
 
-const PROCESS = [
-  "Understand the user, context, and product goal before pushing pixels.",
-  "Shape the flow in low fidelity so the structure is clear early.",
-  "Design the interface with spacing, hierarchy, and responsive states in mind.",
-  "Hand off with enough system thinking for the design to survive implementation.",
+const EDITING_VALUES = [
+  {
+    title: "Clarity",
+    copy: "Every edit should make the message easier to understand, not just faster or flashier.",
+  },
+  {
+    title: "Pacing",
+    copy: "Cuts, pauses, typography, and music need to move together so the viewer never feels dragged.",
+  },
+  {
+    title: "Texture",
+    copy: "Color, grain, sound, and motion details help a piece feel finished without making it noisy.",
+  },
+  {
+    title: "Platform fit",
+    copy: "A good edit respects where it will live: aspect ratio, captions, thumbnail frame, and viewer behavior.",
+  },
 ];
 ---
 
@@ -40,7 +51,7 @@ const PROCESS = [
     <link rel="icon" type="image/svg+xml" href="/icon.webp" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Design Work - Sanchit</title>
+    <title>Video Editing - Sanchit</title>
   </head>
   <body class="bg-page-bg">
     <FluidCursor client:load />
@@ -50,25 +61,25 @@ const PROCESS = [
       <section class="w-full max-w-6xl mx-auto px-4 py-12 md:py-20">
         <div class="max-w-5xl">
           <h1 class="text-4xl md:text-6xl lg:text-7xl font-semibold text-text-heading">
-            design work
+            video editing
           </h1>
           <p class="mt-6 max-w-3xl text-lg md:text-xl leading-8 text-text-secondary">
-            UI/UX design for products that need to feel simple without becoming
-            empty. I focus on structure, spacing, interaction clarity, and the
-            small visual decisions that make a screen easier to trust.
+            Editing work for short-form content, product storytelling, and
+            clean visual sequences. I care about rhythm, message clarity,
+            captions, sound, and the feeling of the final cut.
           </p>
           <div class="mt-8 flex flex-wrap gap-5">
             <a
               href="/#contact"
               class="font-medium text-text-secondary transition-colors duration-200 hover:text-text-heading hover:underline hover:decoration-2 underline-offset-4"
             >
-              Discuss design work -&gt;
+              Discuss an edit -&gt;
             </a>
             <a
-              href="/videos"
+              href="/designs"
               class="font-medium text-text-secondary transition-colors duration-200 hover:text-text-heading hover:underline hover:decoration-2 underline-offset-4"
             >
-              View video editing -&gt;
+              View design work -&gt;
             </a>
           </div>
         </div>
@@ -77,18 +88,18 @@ const PROCESS = [
       <section class="w-full max-w-6xl mx-auto px-4 py-16 md:py-20">
         <div class="mb-12 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <h2 class="group relative inline-block text-left text-3xl md:text-4xl font-semibold text-text-heading cursor-pointer">
-            what I design
+            editing focus
             <span class="absolute -bottom-1 left-0 h-1 w-20 bg-text-heading rounded-xs transition-all duration-300 ease-in-out group-hover:w-full"></span>
           </h2>
           <p class="mt-0 max-w-xl text-text-secondary leading-relaxed md:text-right">
-            The work is intentionally practical: clear product thinking first,
-            then a visual layer that makes the experience feel composed.
+            The goal is simple: keep the viewer oriented, make the content feel
+            intentional, and remove anything that weakens the point.
           </p>
         </div>
 
         <div class="border-t border-border-default">
           {
-            DESIGN_AREAS.map((area, index) => (
+            VIDEO_AREAS.map((area, index) => (
               <article class="group grid gap-6 border-b border-border-default py-8 md:grid-cols-[4rem_minmax(0,1fr)] lg:grid-cols-[4rem_minmax(0,0.75fr)_minmax(20rem,1fr)] lg:gap-10">
                 <div class="text-sm font-medium text-text-tertiary">
                   {String(index + 1).padStart(2, "0")}
@@ -119,38 +130,34 @@ const PROCESS = [
       <section class="w-full max-w-6xl mx-auto px-4 py-16 md:py-20">
         <div class="mb-12 flex justify-end">
           <h2 class="group relative inline-block text-right text-3xl md:text-4xl font-semibold text-text-heading cursor-pointer">
-            process
+            edit notes
             <span class="absolute -bottom-1 right-0 h-1 w-20 bg-text-heading rounded-xs transition-all duration-300 ease-in-out group-hover:w-full"></span>
           </h2>
         </div>
 
         <div class="grid gap-6 md:grid-cols-2">
           {
-            PROCESS.map((item, index) => (
-              <div class="border-t border-border-default py-7">
-                <div class="mb-4 text-sm font-medium text-text-tertiary">
-                  {String(index + 1).padStart(2, "0")}
-                </div>
-                <p class="text-lg leading-8 text-text-secondary">{item}</p>
-              </div>
+            EDITING_VALUES.map((value) => (
+              <article class="group border-t border-border-default py-7">
+                <h3 class="text-xl md:text-2xl font-semibold text-text-heading transition-colors duration-200 group-hover:text-text-accent">
+                  {value.title}
+                </h3>
+                <p class="mt-4 text-text-secondary leading-relaxed">
+                  {value.copy}
+                </p>
+              </article>
             ))
           }
         </div>
       </section>
 
-      <section class="w-full max-w-7xl mx-auto px-4 py-16 md:py-20">
-        <div class="mb-10 max-w-3xl">
-          <h2 class="text-3xl md:text-4xl font-semibold text-text-heading">
-            selected visuals
-          </h2>
-          <p class="mt-5 text-text-secondary leading-relaxed">
-            A moving gallery space for UI explorations and visual concepts. As
-            more polished case studies are added, this page can hold deeper
-            breakdowns without changing the minimal system.
+      <section class="w-full max-w-6xl mx-auto px-4 py-16 md:py-20">
+        <div class="border-y border-border-default py-10 md:py-14">
+          <p class="max-w-4xl text-2xl md:text-4xl leading-tight text-text-heading">
+            Good editing feels invisible when it needs to, sharp when it should,
+            and never confused about what the viewer should notice next.
           </p>
         </div>
-
-        <DesignGallery client:load />
       </section>
     </main>
 
