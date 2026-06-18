@@ -3,135 +3,78 @@ import "../styles/global.css";
 import { Navbar } from "@/components/ui/navbar";
 import { Footer } from "@/components/ui/footer";
 import { FluidCursor } from "@/components/ui/fluid-cursor";
+import { VideoEditsGallery } from "@/components/ui/video-edits-gallery";
 
 const CDN_URL = import.meta.env.PUBLIC_CDN_URL || "";
 
 const getCdnAssetUrl = (path: string) => (CDN_URL ? `${CDN_URL}/${path}` : "");
 
-const VIDEO_AREAS = [
+const VIDEO_EDITS = [
   {
-    title: "Short-form edits",
-    description:
-      "Fast cuts, clean captions, hooks, retention-aware pacing, and platform-native edits for reels, shorts, and social clips.",
-    details: ["Hooks", "Captions", "Pacing", "Social formats"],
+    title: "Gaming edit",
+    filename: "gaming.webm",
+    duration: "00:31",
+    format: "9:16",
+    dimensions: "720 x 1280",
+    orientation: "vertical" as const,
   },
   {
-    title: "Product visuals",
-    description:
-      "Edits that explain software, interfaces, and launches through screen recordings, motion beats, typography, and clean transitions.",
-    details: ["Screen edits", "Launch videos", "UI motion", "Explainers"],
+    title: "Motion graphics edit",
+    filename: "mograph.webm",
+    duration: "00:59",
+    format: "9:16",
+    dimensions: "720 x 1280",
+    orientation: "vertical" as const,
   },
   {
-    title: "Story polish",
-    description:
-      "Trimming, sequencing, sound cleanup, color balance, and rhythm work that makes raw footage feel intentional.",
-    details: ["Sequencing", "Sound", "Color", "Rhythm"],
+    title: "Time edit",
+    filename: "time.webm",
+    duration: "00:22",
+    format: "9:16",
+    dimensions: "720 x 1280",
+    orientation: "vertical" as const,
   },
-];
+  {
+    title: "Talking head edit",
+    filename: "talking-1.webm",
+    duration: "00:52",
+    format: "16:9",
+    dimensions: "1280 x 720",
+    orientation: "landscape" as const,
+  },
+  {
+    title: "Song loop",
+    filename: "song-loop.webm",
+    duration: "02:17",
+    format: "1:1",
+    dimensions: "1254 x 1254",
+    orientation: "square" as const,
+  },
+  {
+    title: "Talking reel edit",
+    filename: "talking-2.webm",
+    duration: "00:53",
+    format: "9:16",
+    dimensions: "720 x 1280",
+    orientation: "vertical" as const,
+  },
+].map((video) => ({
+  ...video,
+  source: getCdnAssetUrl(`videos-edits/${video.filename}`),
+}));
 
 const EDITING_VALUES = [
   {
-    title: "Clarity",
-    copy: "Every edit should make the message easier to understand, not just faster or flashier.",
+    title: "Rhythm first",
+    copy: "Cuts, pauses, captions, and sound need to move together so the viewer never feels dragged.",
   },
   {
-    title: "Pacing",
-    copy: "Cuts, pauses, typography, and music need to move together so the viewer never feels dragged.",
-  },
-  {
-    title: "Texture",
-    copy: "Color, grain, sound, and motion details help a piece feel finished without making it noisy.",
+    title: "Readable motion",
+    copy: "The edit can be energetic without making the message harder to follow.",
   },
   {
     title: "Platform fit",
-    copy: "A good edit respects where it will live: aspect ratio, captions, thumbnail frame, and viewer behavior.",
-  },
-];
-
-const VIDEO_CATEGORIES = [
-  {
-    title: "Short-form edits",
-    description:
-      "Vertical cuts for reels, shorts, launch clips, and social-first storytelling.",
-    videos: [
-      {
-        title: "Hook edit 01",
-        type: "Social edit",
-        duration: "00:30",
-        format: "9:16",
-        slug: "videos/short-form/hook-edit-01",
-      },
-      {
-        title: "Caption edit 01",
-        type: "Caption-led edit",
-        duration: "00:25",
-        format: "9:16",
-        slug: "videos/short-form/caption-edit-01",
-      },
-      {
-        title: "Trend edit 01",
-        type: "Paced social cut",
-        duration: "00:20",
-        format: "9:16",
-        slug: "videos/short-form/trend-edit-01",
-      },
-    ],
-  },
-  {
-    title: "Product visuals",
-    description:
-      "Software, feature, and launch videos built from screen recordings, typography, and motion beats.",
-    videos: [
-      {
-        title: "Product visual 01",
-        type: "Product video",
-        duration: "00:45",
-        format: "16:9",
-        slug: "videos/product/product-visual-01",
-      },
-      {
-        title: "Launch cut 01",
-        type: "Launch video",
-        duration: "00:40",
-        format: "16:9",
-        slug: "videos/product/launch-cut-01",
-      },
-    ],
-  },
-  {
-    title: "UI motion",
-    description:
-      "Interface-led edits for product flows, feature reveals, and motion-polished screen sequences.",
-    videos: [
-      {
-        title: "UI motion edit 01",
-        type: "Interface motion",
-        duration: "00:20",
-        format: "16:9",
-        slug: "videos/ui-motion/ui-motion-edit-01",
-      },
-      {
-        title: "Flow reveal 01",
-        type: "Flow walkthrough",
-        duration: "00:35",
-        format: "16:9",
-        slug: "videos/ui-motion/flow-reveal-01",
-      },
-    ],
-  },
-  {
-    title: "Story polish",
-    description:
-      "Narrative edits focused on trimming, sequence, sound, color, and emotional rhythm.",
-    videos: [
-      {
-        title: "Story polish 01",
-        type: "Narrative edit",
-        duration: "01:00",
-        format: "16:9",
-        slug: "videos/story/story-polish-01",
-      },
-    ],
+    copy: "Aspect ratio, first frame, caption density, and pacing are shaped for short-form viewing habits.",
   },
 ];
 ---
@@ -148,162 +91,58 @@ const VIDEO_CATEGORIES = [
     <FluidCursor client:load />
     <Navbar client:load />
 
-    <main class="min-h-screen w-full overflow-x-hidden pt-32 pb-24">
-      <section class="w-full max-w-6xl mx-auto px-4 py-12 md:py-20">
-        <div class="max-w-5xl">
-          <h1 class="text-4xl md:text-6xl lg:text-7xl font-semibold text-text-heading">
-            video editing
-          </h1>
-          <p class="mt-6 max-w-3xl text-lg md:text-xl leading-8 text-text-secondary">
-            Editing work for short-form content, product storytelling, and
-            clean visual sequences. I care about rhythm, message clarity,
-            captions, sound, and the feeling of the final cut.
-          </p>
-          <div class="mt-8 flex flex-wrap gap-5">
-            <a
-              href="/#contact"
-              class="font-medium text-text-secondary transition-colors duration-200 hover:text-text-heading hover:underline hover:decoration-2 underline-offset-4"
-            >
-              Discuss an edit -&gt;
-            </a>
-            <a
-              href="/designs"
-              class="font-medium text-text-secondary transition-colors duration-200 hover:text-text-heading hover:underline hover:decoration-2 underline-offset-4"
-            >
-              View design work -&gt;
-            </a>
+    <main class="min-h-screen w-full max-w-full overflow-x-hidden pt-32 pb-24">
+      <section class="w-full max-w-7xl mx-auto px-4 py-16 md:py-28">
+        <div class="grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(18rem,0.5fr)] lg:items-end">
+          <div class="max-w-6xl">
+            <h1 class="max-w-6xl text-[clamp(3rem,8vw,7.5rem)] font-semibold leading-[0.92] text-text-heading">
+              video editing
+            </h1>
+            <p class="mt-8 max-w-3xl text-lg md:text-xl leading-8 text-text-secondary">
+              Short-form edits with clean pacing, caption rhythm, motion beats,
+              sound texture, and enough restraint to keep the idea clear.
+            </p>
+          </div>
+
+          <div class="border-t border-border-default pt-6 lg:border-t-0 lg:border-l lg:pl-8">
+            <p class="text-text-secondary leading-relaxed">
+              The gallery below loads progressively from Cloudflare R2, so the
+              page can stay light while still showing the actual edits.
+            </p>
+            <div class="mt-8 flex flex-wrap gap-5">
+              <a
+                href="/#contact"
+                class="font-medium text-text-secondary transition-colors duration-200 hover:text-text-heading hover:underline hover:decoration-2 underline-offset-4"
+              >
+                Discuss an edit -&gt;
+              </a>
+              <a
+                href="/designs"
+                class="font-medium text-text-secondary transition-colors duration-200 hover:text-text-heading hover:underline hover:decoration-2 underline-offset-4"
+              >
+                View design work -&gt;
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="w-full max-w-6xl mx-auto px-4 py-16 md:py-20">
-        <div class="mb-12 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-          <h2 class="group relative inline-block text-left text-3xl md:text-4xl font-semibold text-text-heading cursor-pointer">
-            editing focus
-            <span class="absolute -bottom-1 left-0 h-1 w-20 bg-text-heading rounded-xs transition-all duration-300 ease-in-out group-hover:w-full"></span>
+      <section class="w-full max-w-7xl mx-auto px-4 py-20 md:py-32">
+        <div class="mb-12 grid gap-5 md:grid-cols-[minmax(0,0.75fr)_minmax(0,1fr)] md:items-end">
+          <h2 class="text-3xl md:text-5xl font-semibold leading-tight text-text-heading">
+            selected short-form edits
           </h2>
-          <p class="mt-0 max-w-xl text-text-secondary leading-relaxed md:text-right">
-            The goal is simple: keep the viewer oriented, make the content feel
-            intentional, and remove anything that weakens the point.
+          <p class="text-text-secondary leading-relaxed md:text-right">
+            A compact gallery for vertical reels, motion cuts, talking-head
+            edits, and loops. Each video source is attached only as it nears
+            the viewport.
           </p>
         </div>
 
-        <div class="border-t border-border-default">
-          {
-            VIDEO_AREAS.map((area, index) => (
-              <article class="group grid gap-6 border-b border-border-default py-8 md:grid-cols-[4rem_minmax(0,1fr)] lg:grid-cols-[4rem_minmax(0,0.75fr)_minmax(20rem,1fr)] lg:gap-10">
-                <div class="text-sm font-medium text-text-tertiary">
-                  {String(index + 1).padStart(2, "0")}
-                </div>
-                <div>
-                  <h3 class="text-2xl md:text-3xl font-semibold text-text-heading transition-colors duration-200 group-hover:text-text-accent">
-                    {area.title}
-                  </h3>
-                </div>
-                <div>
-                  <p class="mt-0 text-text-secondary leading-relaxed">
-                    {area.description}
-                  </p>
-                  <div class="mt-6 flex flex-wrap gap-2">
-                    {area.details.map((detail) => (
-                      <span class="rounded-md border border-border-subtle px-2.5 py-1 text-xs font-medium text-text-tertiary">
-                        {detail}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </article>
-            ))
-          }
-        </div>
+        <VideoEditsGallery client:load videos={VIDEO_EDITS} />
       </section>
 
-      <section class="w-full max-w-6xl mx-auto px-4 py-16 md:py-20">
-        <div class="mb-12 flex justify-end">
-          <h2 class="group relative inline-block text-right text-3xl md:text-4xl font-semibold text-text-heading cursor-pointer">
-            selected edits
-            <span class="absolute -bottom-1 right-0 h-1 w-20 bg-text-heading rounded-xs transition-all duration-300 ease-in-out group-hover:w-full"></span>
-          </h2>
-        </div>
-
-        <div class="space-y-16">
-          {
-            VIDEO_CATEGORIES.map((category) => (
-              <div>
-                <div class="mb-8 grid gap-4 border-t border-border-default pt-7 md:grid-cols-[minmax(0,0.7fr)_minmax(0,1fr)]">
-                  <h3 class="text-2xl md:text-3xl font-semibold text-text-heading">
-                    {category.title}
-                  </h3>
-                  <p class="text-text-secondary leading-relaxed md:text-right">
-                    {category.description}
-                  </p>
-                </div>
-
-                <div class="grid gap-8 md:grid-cols-2">
-                  {category.videos.map((video) => {
-                    const videoUrl = getCdnAssetUrl(`${video.slug}.mp4`);
-                    const posterUrl = getCdnAssetUrl(`${video.slug}.webp`);
-                    const filename = `${video.slug}.mp4`;
-
-                    return (
-                      <article class="group">
-                        <div class="overflow-hidden rounded-md border border-border-subtle bg-section-bg-alt">
-                          {videoUrl ? (
-                            <video
-                              controls
-                              preload="metadata"
-                              poster={posterUrl || undefined}
-                              class="aspect-video w-full bg-section-bg-alt object-cover"
-                            >
-                              <source src={videoUrl} type="video/mp4" />
-                            </video>
-                          ) : (
-                            <div class="flex aspect-video w-full flex-col justify-between bg-section-bg-alt p-5">
-                              <div>
-                                <p class="text-sm font-medium text-text-tertiary">
-                                  CDN video slot
-                                </p>
-                                <p class="mt-3 text-xl font-semibold text-text-heading">
-                                  {video.title}
-                                </p>
-                              </div>
-                              <p class="text-sm text-text-secondary">
-                                Upload {filename} to your CDN to enable playback.
-                              </p>
-                            </div>
-                          )}
-                        </div>
-
-                        <div class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                          <div>
-                            <h4 class="text-xl md:text-2xl font-semibold text-text-heading transition-colors duration-200 group-hover:text-text-accent">
-                              {video.title}
-                            </h4>
-                            <p class="mt-2 text-text-secondary">
-                              {video.type}
-                            </p>
-                          </div>
-
-                          <div class="flex gap-2 sm:justify-end">
-                            <span class="rounded-md border border-border-subtle px-2.5 py-1 text-xs font-medium text-text-tertiary">
-                              {video.duration}
-                            </span>
-                            <span class="rounded-md border border-border-subtle px-2.5 py-1 text-xs font-medium text-text-tertiary">
-                              {video.format}
-                            </span>
-                          </div>
-                        </div>
-                      </article>
-                    );
-                  })}
-                </div>
-              </div>
-            ))
-          }
-        </div>
-      </section>
-
-      <section class="w-full max-w-6xl mx-auto px-4 py-16 md:py-20">
+      <section class="w-full max-w-6xl mx-auto px-4 py-20 md:py-32">
         <div class="mb-12 flex justify-end">
           <h2 class="group relative inline-block text-right text-3xl md:text-4xl font-semibold text-text-heading cursor-pointer">
             edit notes
@@ -311,7 +150,7 @@ const VIDEO_CATEGORIES = [
           </h2>
         </div>
 
-        <div class="grid gap-6 md:grid-cols-2">
+        <div class="grid gap-6 md:grid-cols-3">
           {
             EDITING_VALUES.map((value) => (
               <article class="group border-t border-border-default py-7">
@@ -327,11 +166,11 @@ const VIDEO_CATEGORIES = [
         </div>
       </section>
 
-      <section class="w-full max-w-6xl mx-auto px-4 py-16 md:py-20">
+      <section class="w-full max-w-6xl mx-auto px-4 py-20 md:py-32">
         <div class="border-y border-border-default py-10 md:py-14">
-          <p class="max-w-4xl text-2xl md:text-4xl leading-tight text-text-heading">
-            Good editing feels invisible when it needs to, sharp when it should,
-            and never confused about what the viewer should notice next.
+          <p class="max-w-5xl text-2xl md:text-4xl leading-tight text-text-heading">
+            Good editing feels invisible when it needs to, sharp when it
+            should, and never confused about what the viewer should notice next.
           </p>
         </div>
       </section>

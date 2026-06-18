@@ -204,3 +204,13 @@
     @apply bg-page-bg text-text-primary font-sans;
   }
 }
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
