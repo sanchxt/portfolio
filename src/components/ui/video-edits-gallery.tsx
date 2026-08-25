@@ -7,9 +7,9 @@ import { cn } from "@/lib/utils";
 type VideoEdit = {
   title: string;
   filename: string;
-  duration: string;
+  duration?: string;
   format: string;
-  dimensions: string;
+  dimensions?: string;
   orientation: "vertical" | "landscape" | "square";
   source: string;
 };
@@ -40,6 +40,9 @@ const ORIENTATION_STYLES: Record<
 };
 
 const getLoadedKey = (video: VideoEdit) => video.filename;
+
+const getVideoMimeType = (filename: string) =>
+  filename.toLowerCase().endsWith(".mp4") ? "video/mp4" : "video/webm";
 
 export const VideoEditsGallery = ({ videos }: VideoEditsGalleryProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -192,9 +195,12 @@ export const VideoEditsGallery = ({ videos }: VideoEditsGalleryProps) => {
                       controls
                       playsInline
                       preload="metadata"
-                      className="h-full w-full bg-section-bg-alt object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                      className="portfolio-video h-full w-full bg-section-bg-alt object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                     >
-                      <source src={video.source} type="video/webm" />
+                      <source
+                        src={video.source}
+                        type={getVideoMimeType(video.filename)}
+                      />
                     </video>
                   ) : (
                     <div className="flex h-full w-full flex-col justify-between p-5">
@@ -219,14 +225,18 @@ export const VideoEditsGallery = ({ videos }: VideoEditsGalleryProps) => {
                   <h4 className="text-xl font-semibold text-text-heading transition-colors duration-200 group-hover:text-text-accent">
                     {video.title}
                   </h4>
-                  <p className="mt-1 text-sm text-text-secondary">
-                    {video.dimensions}
-                  </p>
+                  {video.dimensions && (
+                    <p className="mt-1 text-sm text-text-secondary">
+                      {video.dimensions}
+                    </p>
+                  )}
                 </div>
                 <div className="flex shrink-0 flex-wrap gap-2 sm:justify-end">
-                  <span className="rounded-md border border-border-subtle px-2.5 py-1 text-xs font-medium text-text-tertiary">
-                    {video.duration}
-                  </span>
+                  {video.duration && (
+                    <span className="rounded-md border border-border-subtle px-2.5 py-1 text-xs font-medium text-text-tertiary">
+                      {video.duration}
+                    </span>
+                  )}
                   <span className="rounded-md border border-border-subtle px-2.5 py-1 text-xs font-medium text-text-tertiary">
                     {video.format}
                   </span>
