@@ -5,27 +5,32 @@ import { Footer } from "@/components/ui/footer";
 import { FluidCursor } from "@/components/ui/fluid-cursor";
 import { VideoEditsGallery } from "@/components/ui/video-edits-gallery";
 
-const CDN_URL = import.meta.env.PUBLIC_CDN_URL || "";
+const CDN_URL = (
+  import.meta.env.PUBLIC_CDN_URL || "https://cdn.sanchxt.com"
+).replace(/^http:\/\//i, "https://");
 
 const getCdnAssetUrl = (path: string) => (CDN_URL ? `${CDN_URL}/${path}` : "");
 
 const VIDEO_EDITS = [
   {
-    title: "Messi vertical",
+    title: "Sports edit",
     filename: "messi-vertical.mp4",
     format: "9:16",
+    category: "Sports",
     orientation: "vertical" as const,
   },
   {
-    title: "Travel vertical",
+    title: "Travel vlog",
     filename: "travel-vertical.mp4",
     format: "9:16",
+    category: "Travel",
     orientation: "vertical" as const,
   },
   {
-    title: "Katie vertical",
+    title: "Storytelling edit",
     filename: "katie-vertical.mp4",
     format: "9:16",
+    category: "Storytelling",
     orientation: "vertical" as const,
   },
   {
@@ -34,12 +39,14 @@ const VIDEO_EDITS = [
     duration: "00:52",
     format: "16:9",
     dimensions: "1280 x 720",
+    category: "Talking head",
     orientation: "landscape" as const,
   },
   {
-    title: "COD vertical",
+    title: "Call of Duty edit",
     filename: "cod-vertical.mp4",
     format: "9:16",
+    category: "Gaming reel",
     orientation: "vertical" as const,
   },
   {
@@ -48,14 +55,16 @@ const VIDEO_EDITS = [
     duration: "02:17",
     format: "1:1",
     dimensions: "1254 x 1254",
+    category: "Music loop",
     orientation: "square" as const,
   },
   {
-    title: "Time edit",
+    title: "Time motion edit",
     filename: "time.webm",
     duration: "00:22",
     format: "9:16",
     dimensions: "720 x 1280",
+    category: "Motion edit",
     orientation: "vertical" as const,
   },
   {
@@ -64,14 +73,16 @@ const VIDEO_EDITS = [
     duration: "00:53",
     format: "9:16",
     dimensions: "720 x 1280",
+    category: "Talking head",
     orientation: "vertical" as const,
   },
   {
-    title: "Gaming edit",
+    title: "Gaming montage",
     filename: "gaming.webm",
     duration: "00:31",
     format: "9:16",
     dimensions: "720 x 1280",
+    category: "Gaming edit",
     orientation: "vertical" as const,
   },
 ].map((video) => ({
@@ -79,18 +90,61 @@ const VIDEO_EDITS = [
   source: getCdnAssetUrl(`videos-edits/${video.filename}`),
 }));
 
-const EDITING_VALUES = [
+const SERVICES = [
   {
-    title: "Rhythm first",
-    copy: "Cuts, pauses, captions, and sound need to move together so the viewer never feels dragged.",
+    number: "01",
+    title: "Short-form social",
+    copy: "Reels and vertical edits shaped around a strong opening, clean pacing, captions, and sound-led momentum.",
   },
   {
-    title: "Readable motion",
-    copy: "The edit can be energetic without making the message harder to follow.",
+    number: "02",
+    title: "Talking-head edits",
+    copy: "Confident cuts, readable captions, visual emphasis, and supporting moments that keep the message moving.",
   },
   {
-    title: "Platform fit",
-    copy: "Aspect ratio, first frame, caption density, and pacing are shaped for short-form viewing habits.",
+    number: "03",
+    title: "Gaming & montage",
+    copy: "Fast, music-aware sequences with enough impact to feel energetic without losing the story or the play.",
+  },
+  {
+    number: "04",
+    title: "Motion & loops",
+    copy: "Polished motion details, seamless loops, and format-ready cuts for campaigns, music, and social posts.",
+  },
+];
+
+const TOOLS = [
+  "Premiere Pro",
+  "After Effects",
+  "CapCut",
+  "DaVinci Resolve",
+  "Photoshop",
+  "Canva",
+  "Figma",
+  "Descript",
+  "AI-assisted workflows",
+];
+
+const PROCESS = [
+  {
+    step: "01",
+    title: "Share the footage",
+    copy: "Send the raw clips, references, platform, and what the edit needs to achieve.",
+  },
+  {
+    step: "02",
+    title: "Set the direction",
+    copy: "We align on pacing, visual language, music, captions, and the strongest opening.",
+  },
+  {
+    step: "03",
+    title: "Edit and refine",
+    copy: "I build the cut, shape the details, and refine it around clear, focused feedback.",
+  },
+  {
+    step: "04",
+    title: "Ready to publish",
+    copy: "You receive a polished export built for the channel and format where it will live.",
   },
 ];
 ---
@@ -101,93 +155,201 @@ const EDITING_VALUES = [
     <link rel="icon" type="image/svg+xml" href="/icon.webp" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Video Editing - Sanchit</title>
+    <meta
+      name="description"
+      content="Selected short-form, talking-head, gaming, and social video edits by Sanchit."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Video Editor — Sanchit" />
+    <meta
+      property="og:description"
+      content="Edits that make every second count. Explore selected video work by Sanchit."
+    />
+    <meta property="og:image" content="https://sanchxt.com/og-video.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Video Editor — Sanchit" />
+    <meta
+      name="twitter:description"
+      content="Edits that make every second count. Explore selected video work by Sanchit."
+    />
+    <meta name="twitter:image" content="https://sanchxt.com/og-video.png" />
+    <title>Video Editor — Sanchit</title>
   </head>
   <body class="bg-page-bg">
     <FluidCursor client:load />
     <Navbar client:load />
 
     <main class="min-h-screen w-full max-w-full overflow-x-hidden pt-32 pb-24">
-      <section class="w-full max-w-7xl mx-auto px-4 py-16 md:py-28">
-        <div class="grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(18rem,0.5fr)] lg:items-end">
-          <div class="max-w-6xl">
-            <h1 class="max-w-6xl text-[clamp(3rem,8vw,7.5rem)] font-semibold leading-[0.92] text-text-heading">
-              video editing
-            </h1>
-            <p class="mt-8 max-w-3xl text-lg md:text-xl leading-8 text-text-secondary">
-              Short-form edits with clean pacing, caption rhythm, motion beats,
-              sound texture, and enough restraint to keep the idea clear.
-            </p>
+      <section class="w-full max-w-7xl mx-auto px-4 py-12 md:py-24">
+        <div class="overflow-hidden rounded-[2rem] border border-border-default bg-section-bg-alt px-5 py-7 md:px-10 md:py-12 lg:px-14 lg:py-16">
+          <div class="mb-14 flex flex-wrap items-center justify-between gap-4 text-xs font-semibold uppercase tracking-[0.18em] text-text-tertiary">
+            <span>Video editor · selected work</span>
+            <span class="inline-flex items-center gap-2">
+              <span class="h-2 w-2 rounded-full bg-text-heading"></span>
+              Available for projects
+            </span>
           </div>
 
-          <div class="border-t border-border-default pt-6 lg:border-t-0 lg:border-l lg:pl-8">
-            <p class="text-text-secondary leading-relaxed">
-              The gallery below loads progressively from Cloudflare R2, so the
-              page can stay light while still showing the actual edits.
-            </p>
-            <div class="mt-8 flex flex-wrap gap-5">
-              <a
-                href="/#contact"
-                class="font-medium text-text-secondary transition-colors duration-200 hover:text-text-heading hover:underline hover:decoration-2 underline-offset-4"
-              >
-                Discuss an edit -&gt;
-              </a>
-              <a
-                href="/designs"
-                class="font-medium text-text-secondary transition-colors duration-200 hover:text-text-heading hover:underline hover:decoration-2 underline-offset-4"
-              >
-                View design work -&gt;
-              </a>
+          <div class="grid gap-12 lg:grid-cols-[minmax(0,1.25fr)_minmax(18rem,0.55fr)] lg:items-end">
+            <div>
+              <h1 class="max-w-5xl text-[clamp(3.6rem,9vw,8.5rem)] font-semibold leading-[0.86] tracking-[-0.055em] text-text-heading">
+                Edits that make every second count.
+              </h1>
+              <p class="mt-8 max-w-2xl text-lg leading-8 text-text-secondary md:text-xl">
+                I turn raw footage into sharp, watchable stories for creators,
+                brands, and social feeds—built around pacing, clarity, and the
+                moments people remember.
+              </p>
             </div>
+
+            <div class="border-t border-border-default pt-7 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+              <p class="text-sm font-semibold uppercase tracking-[0.16em] text-text-tertiary">
+                What I edit
+              </p>
+              <p class="mt-4 text-2xl font-semibold leading-tight text-text-heading md:text-3xl">
+                Reels, talking-head videos, gaming edits, motion-led cuts, and loops.
+              </p>
+              <div class="mt-8 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+                <a
+                  href="#selected-work"
+                  class="inline-flex items-center justify-center rounded-full bg-text-heading px-6 py-3 text-sm font-semibold text-page-bg transition-transform duration-200 hover:-translate-y-0.5"
+                >
+                  Watch selected edits
+                </a>
+                <a
+                  href="/#contact"
+                  class="inline-flex items-center justify-center rounded-full border border-border-default px-6 py-3 text-sm font-semibold text-text-heading transition-colors duration-200 hover:bg-page-bg"
+                >
+                  Start a project
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-14 grid border-t border-border-default pt-7 sm:grid-cols-3">
+            <p class="py-2 text-sm font-medium text-text-secondary">Short-form social</p>
+            <p class="border-border-default py-2 text-sm font-medium text-text-secondary sm:border-l sm:pl-6">Talking-head & narrative</p>
+            <p class="border-border-default py-2 text-sm font-medium text-text-secondary sm:border-l sm:pl-6">Gaming & motion</p>
           </div>
         </div>
       </section>
 
-      <section class="w-full max-w-7xl mx-auto px-4 py-20 md:py-32">
-        <div class="mb-12 grid gap-5 md:grid-cols-[minmax(0,0.75fr)_minmax(0,1fr)] md:items-end">
-          <h2 class="text-3xl md:text-5xl font-semibold leading-tight text-text-heading">
-            selected short-form edits
-          </h2>
-          <p class="text-text-secondary leading-relaxed md:text-right">
-            A compact gallery for vertical reels, motion cuts, talking-head
-            edits, and loops. Each video source is attached only as it nears
-            the viewport.
+      <section id="selected-work" class="w-full max-w-7xl mx-auto scroll-mt-24 px-4 py-20 md:py-32">
+        <div class="mb-14 grid gap-7 border-t border-border-default pt-7 md:grid-cols-[minmax(0,1fr)_minmax(18rem,0.55fr)] md:items-end">
+          <div>
+            <p class="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-text-tertiary">Selected work · 9 edits</p>
+            <h2 class="max-w-4xl text-4xl font-semibold leading-[0.95] tracking-[-0.035em] text-text-heading md:text-6xl">
+              A range of pacing, formats, and energy.
+            </h2>
+          </div>
+          <p class="max-w-xl text-base leading-7 text-text-secondary md:justify-self-end md:text-lg">
+            From football and travel reels to talking-head stories and gaming
+            edits. Press play and explore the work.
           </p>
         </div>
 
         <VideoEditsGallery client:load videos={VIDEO_EDITS} />
       </section>
 
-      <section class="w-full max-w-6xl mx-auto px-4 py-20 md:py-32">
-        <div class="mb-12 flex justify-end">
-          <h2 class="group relative inline-block text-right text-3xl md:text-4xl font-semibold text-text-heading cursor-pointer">
-            edit notes
-            <span class="absolute -bottom-1 right-0 h-1 w-20 bg-text-heading rounded-xs transition-all duration-300 ease-in-out group-hover:w-full"></span>
-          </h2>
+      <section class="w-full max-w-7xl mx-auto px-4 py-20 md:py-32">
+        <div class="rounded-[2rem] bg-text-heading px-5 py-8 text-page-bg md:px-10 md:py-12 lg:px-14 lg:py-16">
+          <div class="grid gap-8 border-b border-page-bg/20 pb-10 md:grid-cols-2 md:items-end">
+            <div>
+              <p class="mb-4 text-xs font-semibold uppercase tracking-[0.18em] opacity-60">How I can help</p>
+              <h2 class="text-4xl font-semibold leading-[0.95] tracking-[-0.035em] md:text-6xl">
+                Editing built around the way people watch.
+              </h2>
+            </div>
+            <p class="max-w-xl text-base leading-7 opacity-70 md:justify-self-end md:text-lg">
+              Every cut has a job: earn attention, make the message clearer,
+              or land the moment with more impact.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2">
+            {
+              SERVICES.map((service) => (
+                <article class="border-b border-page-bg/20 py-8 md:px-8 md:first:pl-0 md:[&:nth-child(even)]:border-l md:[&:nth-child(odd)]:pl-0">
+                  <p class="text-xs font-semibold tracking-[0.18em] opacity-50">{service.number}</p>
+                  <h3 class="mt-8 text-2xl font-semibold md:text-3xl">{service.title}</h3>
+                  <p class="mt-4 max-w-xl leading-7 opacity-70">{service.copy}</p>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="w-full max-w-7xl mx-auto px-4 py-20 md:py-28">
+        <div class="grid gap-10 border-t border-border-default pt-8 lg:grid-cols-[minmax(0,0.65fr)_minmax(0,1.35fr)]">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-text-tertiary">Creative toolkit</p>
+            <h2 class="mt-4 max-w-md text-4xl font-semibold leading-tight tracking-[-0.03em] text-text-heading md:text-5xl">
+              Tools I work in.
+            </h2>
+            <p class="mt-5 max-w-md leading-7 text-text-secondary">
+              A flexible workflow for editing, motion, graphics, and visual direction from first cut to final export.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap content-start gap-3 lg:justify-end">
+            {
+              TOOLS.map((tool, index) => (
+                <span class="inline-flex items-center gap-3 rounded-full border border-border-default px-5 py-3 text-base font-semibold text-text-heading md:px-7 md:py-4 md:text-xl">
+                  <span class="text-xs text-text-tertiary">0{index + 1}</span>
+                  {tool}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="w-full max-w-7xl mx-auto px-4 py-20 md:py-28">
+        <div class="mb-12 flex flex-col gap-5 border-t border-border-default pt-8 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-text-tertiary">A clear workflow</p>
+            <h2 class="mt-4 text-4xl font-semibold tracking-[-0.03em] text-text-heading md:text-5xl">From raw footage to final cut.</h2>
+          </div>
+          <p class="max-w-md leading-7 text-text-secondary">Simple communication, a clear creative direction, and an edit shaped for where it will be watched.</p>
         </div>
 
-        <div class="grid gap-6 md:grid-cols-3">
+        <div class="grid gap-px overflow-hidden rounded-[1.5rem] border border-border-default bg-border-default md:grid-cols-2 lg:grid-cols-4">
           {
-            EDITING_VALUES.map((value) => (
-              <article class="group border-t border-border-default py-7">
-                <h3 class="text-xl md:text-2xl font-semibold text-text-heading transition-colors duration-200 group-hover:text-text-accent">
-                  {value.title}
-                </h3>
-                <p class="mt-4 text-text-secondary leading-relaxed">
-                  {value.copy}
-                </p>
+            PROCESS.map((item) => (
+              <article class="min-h-72 bg-page-bg p-6 md:p-8">
+                <p class="text-xs font-semibold tracking-[0.18em] text-text-tertiary">{item.step}</p>
+                <h3 class="mt-16 text-2xl font-semibold text-text-heading">{item.title}</h3>
+                <p class="mt-4 leading-7 text-text-secondary">{item.copy}</p>
               </article>
             ))
           }
         </div>
       </section>
 
-      <section class="w-full max-w-6xl mx-auto px-4 py-20 md:py-32">
-        <div class="border-y border-border-default py-10 md:py-14">
-          <p class="max-w-5xl text-2xl md:text-4xl leading-tight text-text-heading">
-            Good editing feels invisible when it needs to, sharp when it
-            should, and never confused about what the viewer should notice next.
+      <section class="w-full max-w-7xl mx-auto px-4 py-20 md:py-32">
+        <div class="rounded-[2rem] border border-border-default px-5 py-10 text-center md:px-12 md:py-20">
+          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-text-tertiary">Have footage in mind?</p>
+          <h2 class="mx-auto mt-6 max-w-5xl text-5xl font-semibold leading-[0.92] tracking-[-0.045em] text-text-heading md:text-7xl">
+            Let’s turn it into something worth watching.
+          </h2>
+          <p class="mx-auto mt-7 max-w-2xl text-lg leading-8 text-text-secondary">
+            Tell me what you are making, where it will live, and what you want the viewer to feel.
           </p>
+          <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <a
+              href="mailto:sanchxt.dev@gmail.com?subject=Video%20editing%20project"
+              class="inline-flex items-center justify-center rounded-full bg-text-heading px-7 py-3.5 text-sm font-semibold text-page-bg transition-transform duration-200 hover:-translate-y-0.5"
+            >
+              Discuss your edit
+            </a>
+            <a
+              href="/designs"
+              class="inline-flex items-center justify-center rounded-full border border-border-default px-7 py-3.5 text-sm font-semibold text-text-heading transition-colors duration-200 hover:bg-section-bg-alt"
+            >
+              See design work
+            </a>
+          </div>
         </div>
       </section>
     </main>

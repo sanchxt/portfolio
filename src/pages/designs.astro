@@ -5,32 +5,68 @@ import { Footer } from "@/components/ui/footer";
 import { FluidCursor } from "@/components/ui/fluid-cursor";
 import { DesignGallery } from "@/components/ui/design-gallery";
 
-const DESIGN_AREAS = [
+const DESIGN_SERVICES = [
   {
+    number: "01",
     title: "Product interfaces",
     description:
-      "Dashboards, SaaS screens, app surfaces, and developer tools with calm hierarchy, reusable patterns, and fast scanning.",
-    details: ["Dashboards", "Web apps", "Developer tools", "Responsive UI"],
+      "Clear, responsive interfaces for web products, apps, dashboards, and tools—designed to make complex actions feel straightforward.",
+    details: ["Web apps", "Dashboards", "Responsive UI"],
   },
   {
-    title: "UX flows",
+    number: "02",
+    title: "UX and product flows",
     description:
-      "User journeys, wireframes, onboarding, empty states, and decision paths that make the next action feel obvious.",
-    details: ["Wireframes", "User flows", "Onboarding", "States"],
+      "Thoughtful journeys, wireframes, onboarding, and product states that help users understand where they are and what comes next.",
+    details: ["User flows", "Wireframes", "Onboarding"],
   },
   {
-    title: "Visual systems",
+    number: "03",
+    title: "Design systems",
     description:
-      "Typography, spacing, components, color, and interaction details that keep a product feeling consistent after the first screen.",
-    details: ["Components", "Typography", "Color systems", "Interaction polish"],
+      "Reusable components, type, spacing, color, and interaction rules that keep a product consistent as it grows.",
+    details: ["Components", "Typography", "UI foundations"],
+  },
+  {
+    number: "04",
+    title: "Visual direction",
+    description:
+      "A distinct visual language for landing pages, launch moments, and branded digital experiences without sacrificing usability.",
+    details: ["Landing pages", "Art direction", "Campaign UI"],
   },
 ];
 
 const PROCESS = [
-  "Understand the user, context, and product goal before pushing pixels.",
-  "Shape the flow in low fidelity so the structure is clear early.",
-  "Design the interface with spacing, hierarchy, and responsive states in mind.",
-  "Hand off with enough system thinking for the design to survive implementation.",
+  {
+    step: "01",
+    title: "Understand the problem",
+    copy: "We align on the user, the product goal, the constraints, and what success needs to look like.",
+  },
+  {
+    step: "02",
+    title: "Shape the experience",
+    copy: "I map the flow and structure first, so the screen solves the right problem before visual polish begins.",
+  },
+  {
+    step: "03",
+    title: "Design the system",
+    copy: "The interface takes shape through hierarchy, responsive behavior, components, and purposeful visual detail.",
+  },
+  {
+    step: "04",
+    title: "Refine and hand off",
+    copy: "Feedback becomes focused revisions and a clear design handoff that is practical to build from.",
+  },
+];
+
+const DESIGN_TOOLS = [
+  "Figma",
+  "FigJam",
+  "Canva",
+  "Photoshop",
+  "Illustrator",
+  "Framer",
+  "AI-assisted workflows",
 ];
 ---
 
@@ -40,117 +76,205 @@ const PROCESS = [
     <link rel="icon" type="image/svg+xml" href="/icon.webp" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Design Work - Sanchit</title>
+    <meta
+      name="description"
+      content="Selected interface, product, and visual design work by Sanchit."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Design Work — Sanchit" />
+    <meta
+      property="og:description"
+      content="Clear digital experiences shaped around product thinking, visual systems, and the people using them."
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Design Work — Sanchit" />
+    <meta
+      name="twitter:description"
+      content="Clear digital experiences shaped around product thinking, visual systems, and the people using them."
+    />
+    <title>Design Work — Sanchit</title>
   </head>
   <body class="bg-page-bg">
     <FluidCursor client:load />
     <Navbar client:load />
 
     <main class="min-h-screen w-full overflow-x-hidden pt-32 pb-24">
-      <section class="w-full max-w-6xl mx-auto px-4 py-12 md:py-20">
-        <div class="max-w-5xl">
-          <h1 class="text-4xl md:text-6xl lg:text-7xl font-semibold text-text-heading">
-            design work
-          </h1>
-          <p class="mt-6 max-w-3xl text-lg md:text-xl leading-8 text-text-secondary">
-            UI/UX design for products that need to feel simple without becoming
-            empty. I focus on structure, spacing, interaction clarity, and the
-            small visual decisions that make a screen easier to trust.
-          </p>
-          <div class="mt-8 flex flex-wrap gap-5">
-            <a
-              href="/#contact"
-              class="font-medium text-text-secondary transition-colors duration-200 hover:text-text-heading hover:underline hover:decoration-2 underline-offset-4"
-            >
-              Discuss design work -&gt;
-            </a>
-            <a
-              href="/videos"
-              class="font-medium text-text-secondary transition-colors duration-200 hover:text-text-heading hover:underline hover:decoration-2 underline-offset-4"
-            >
-              View video editing -&gt;
-            </a>
+      <section class="w-full max-w-7xl mx-auto px-4 py-12 md:py-24">
+        <div class="overflow-hidden rounded-[2rem] border border-border-default bg-section-bg-alt px-5 py-7 md:px-10 md:py-12 lg:px-14 lg:py-16">
+          <div class="mb-14 flex flex-wrap items-center justify-between gap-4 text-xs font-semibold uppercase tracking-[0.18em] text-text-tertiary">
+            <span>Product designer · selected work</span>
+            <span class="inline-flex items-center gap-2">
+              <span class="h-2 w-2 rounded-full bg-text-heading"></span>
+              Available for projects
+            </span>
+          </div>
+
+          <div class="grid gap-12 lg:grid-cols-[minmax(0,1.25fr)_minmax(18rem,0.55fr)] lg:items-end">
+            <div>
+              <h1 class="max-w-5xl text-[clamp(3.6rem,9vw,8.5rem)] font-semibold leading-[0.86] tracking-[-0.055em] text-text-heading">
+                Interfaces that feel clear from the first click.
+              </h1>
+              <p class="mt-8 max-w-2xl text-lg leading-8 text-text-secondary md:text-xl">
+                I design digital products that turn complicated ideas into
+                focused, useful experiences—balancing product thinking with a
+                visual system people can understand and trust.
+              </p>
+            </div>
+
+            <div class="border-t border-border-default pt-7 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+              <p class="text-sm font-semibold uppercase tracking-[0.16em] text-text-tertiary">
+                What I design
+              </p>
+              <p class="mt-4 text-2xl font-semibold leading-tight text-text-heading md:text-3xl">
+                Product interfaces, UX flows, design systems, and landing experiences.
+              </p>
+              <div class="mt-8 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+                <a
+                  href="#selected-designs"
+                  class="inline-flex items-center justify-center rounded-full bg-text-heading px-6 py-3 text-sm font-semibold text-page-bg transition-transform duration-200 hover:-translate-y-0.5"
+                >
+                  Explore selected work
+                </a>
+                <a
+                  href="mailto:sanchxt.dev@gmail.com?subject=Design%20project"
+                  class="inline-flex items-center justify-center rounded-full border border-border-default px-6 py-3 text-sm font-semibold text-text-heading transition-colors duration-200 hover:bg-page-bg"
+                >
+                  Start a project
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-14 grid border-t border-border-default pt-7 sm:grid-cols-3">
+            <p class="py-2 text-sm font-medium text-text-secondary">Product thinking</p>
+            <p class="border-border-default py-2 text-sm font-medium text-text-secondary sm:border-l sm:pl-6">Interface design</p>
+            <p class="border-border-default py-2 text-sm font-medium text-text-secondary sm:border-l sm:pl-6">Visual systems</p>
           </div>
         </div>
       </section>
 
-      <section class="w-full max-w-6xl mx-auto px-4 py-16 md:py-20">
-        <div class="mb-12 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-          <h2 class="group relative inline-block text-left text-3xl md:text-4xl font-semibold text-text-heading cursor-pointer">
-            what I design
-            <span class="absolute -bottom-1 left-0 h-1 w-20 bg-text-heading rounded-xs transition-all duration-300 ease-in-out group-hover:w-full"></span>
-          </h2>
-          <p class="mt-0 max-w-xl text-text-secondary leading-relaxed md:text-right">
-            The work is intentionally practical: clear product thinking first,
-            then a visual layer that makes the experience feel composed.
+      <section id="selected-designs" class="w-full max-w-7xl mx-auto scroll-mt-24 px-4 py-20 md:py-32">
+        <div class="mb-14 grid gap-7 border-t border-border-default pt-7 md:grid-cols-[minmax(0,1fr)_minmax(18rem,0.55fr)] md:items-end">
+          <div>
+            <p class="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-text-tertiary">Selected visual work</p>
+            <h2 class="max-w-4xl text-4xl font-semibold leading-[0.95] tracking-[-0.035em] text-text-heading md:text-6xl">
+              Explorations in interface, layout, and visual direction.
+            </h2>
+          </div>
+          <p class="max-w-xl text-base leading-7 text-text-secondary md:justify-self-end md:text-lg">
+            Drag or scroll through a collection of digital design work spanning
+            products, web experiences, and visual systems.
           </p>
         </div>
 
-        <div class="border-t border-border-default">
-          {
-            DESIGN_AREAS.map((area, index) => (
-              <article class="group grid gap-6 border-b border-border-default py-8 md:grid-cols-[4rem_minmax(0,1fr)] lg:grid-cols-[4rem_minmax(0,0.75fr)_minmax(20rem,1fr)] lg:gap-10">
-                <div class="text-sm font-medium text-text-tertiary">
-                  {String(index + 1).padStart(2, "0")}
-                </div>
-                <div>
-                  <h3 class="text-2xl md:text-3xl font-semibold text-text-heading transition-colors duration-200 group-hover:text-text-accent">
-                    {area.title}
-                  </h3>
-                </div>
-                <div>
-                  <p class="mt-0 text-text-secondary leading-relaxed">
-                    {area.description}
-                  </p>
+        <DesignGallery />
+      </section>
+
+      <section class="w-full max-w-7xl mx-auto px-4 py-20 md:py-32">
+        <div class="rounded-[2rem] bg-text-heading px-5 py-8 text-page-bg md:px-10 md:py-12 lg:px-14 lg:py-16">
+          <div class="grid gap-8 border-b border-page-bg/20 pb-10 md:grid-cols-2 md:items-end">
+            <div>
+              <p class="mb-4 text-xs font-semibold uppercase tracking-[0.18em] opacity-60">Design capabilities</p>
+              <h2 class="text-4xl font-semibold leading-[0.95] tracking-[-0.035em] md:text-6xl">
+                From the first flow to the finished interface.
+              </h2>
+            </div>
+            <p class="max-w-xl text-base leading-7 opacity-70 md:justify-self-end md:text-lg">
+              I can help shape the structure, the visual language, or the full
+              experience—wherever the product needs clarity.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2">
+            {
+              DESIGN_SERVICES.map((service) => (
+                <article class="border-b border-page-bg/20 py-8 md:px-8 md:first:pl-0 md:[&:nth-child(even)]:border-l md:[&:nth-child(odd)]:pl-0">
+                  <p class="text-xs font-semibold tracking-[0.18em] opacity-50">{service.number}</p>
+                  <h3 class="mt-8 text-2xl font-semibold md:text-3xl">{service.title}</h3>
+                  <p class="mt-4 max-w-xl leading-7 opacity-70">{service.description}</p>
                   <div class="mt-6 flex flex-wrap gap-2">
-                    {area.details.map((detail) => (
-                      <span class="rounded-md border border-border-subtle px-2.5 py-1 text-xs font-medium text-text-tertiary">
-                        {detail}
-                      </span>
+                    {service.details.map((detail) => (
+                      <span class="rounded-full border border-page-bg/20 px-3 py-1 text-xs font-semibold opacity-70">{detail}</span>
                     ))}
                   </div>
-                </div>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="w-full max-w-7xl mx-auto px-4 py-20 md:py-28">
+        <div class="grid gap-10 border-t border-border-default pt-8 lg:grid-cols-[minmax(0,0.65fr)_minmax(0,1.35fr)]">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-text-tertiary">Design toolkit</p>
+            <h2 class="mt-4 max-w-md text-4xl font-semibold leading-tight tracking-[-0.03em] text-text-heading md:text-5xl">
+              Tools I design with.
+            </h2>
+            <p class="mt-5 max-w-md leading-7 text-text-secondary">
+              A practical toolkit for product thinking, interface design, visual exploration, prototyping, and faster creative iteration.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap content-start gap-3 lg:justify-end">
+            {
+              DESIGN_TOOLS.map((tool, index) => (
+                <span class="inline-flex items-center gap-3 rounded-full border border-border-default px-5 py-3 text-base font-semibold text-text-heading md:px-7 md:py-4 md:text-xl">
+                  <span class="text-xs text-text-tertiary">0{index + 1}</span>
+                  {tool}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="w-full max-w-7xl mx-auto px-4 py-20 md:py-28">
+        <div class="mb-12 flex flex-col gap-5 border-t border-border-default pt-8 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-text-tertiary">A clear process</p>
+            <h2 class="mt-4 text-4xl font-semibold tracking-[-0.03em] text-text-heading md:text-5xl">From product question to build-ready design.</h2>
+          </div>
+          <p class="max-w-md leading-7 text-text-secondary">Enough structure to stay aligned, with room to explore the details that make the experience feel distinct.</p>
+        </div>
+
+        <div class="grid gap-px overflow-hidden rounded-[1.5rem] border border-border-default bg-border-default md:grid-cols-2 lg:grid-cols-4">
+          {
+            PROCESS.map((item) => (
+              <article class="min-h-72 bg-page-bg p-6 md:p-8">
+                <p class="text-xs font-semibold tracking-[0.18em] text-text-tertiary">{item.step}</p>
+                <h3 class="mt-16 text-2xl font-semibold text-text-heading">{item.title}</h3>
+                <p class="mt-4 leading-7 text-text-secondary">{item.copy}</p>
               </article>
             ))
           }
         </div>
       </section>
 
-      <section class="w-full max-w-6xl mx-auto px-4 py-16 md:py-20">
-        <div class="mb-12 flex justify-end">
-          <h2 class="group relative inline-block text-right text-3xl md:text-4xl font-semibold text-text-heading cursor-pointer">
-            process
-            <span class="absolute -bottom-1 right-0 h-1 w-20 bg-text-heading rounded-xs transition-all duration-300 ease-in-out group-hover:w-full"></span>
+      <section class="w-full max-w-7xl mx-auto px-4 py-20 md:py-32">
+        <div class="rounded-[2rem] border border-border-default px-5 py-10 text-center md:px-12 md:py-20">
+          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-text-tertiary">Building something new?</p>
+          <h2 class="mx-auto mt-6 max-w-5xl text-5xl font-semibold leading-[0.92] tracking-[-0.045em] text-text-heading md:text-7xl">
+            Let’s make the experience easier to understand—and harder to forget.
           </h2>
-        </div>
-
-        <div class="grid gap-6 md:grid-cols-2">
-          {
-            PROCESS.map((item, index) => (
-              <div class="border-t border-border-default py-7">
-                <div class="mb-4 text-sm font-medium text-text-tertiary">
-                  {String(index + 1).padStart(2, "0")}
-                </div>
-                <p class="text-lg leading-8 text-text-secondary">{item}</p>
-              </div>
-            ))
-          }
-        </div>
-      </section>
-
-      <section class="w-full max-w-7xl mx-auto px-4 py-16 md:py-20">
-        <div class="mb-10 max-w-3xl">
-          <h2 class="text-3xl md:text-4xl font-semibold text-text-heading">
-            selected visuals
-          </h2>
-          <p class="mt-5 text-text-secondary leading-relaxed">
-            A moving gallery space for UI explorations and visual concepts. As
-            more polished case studies are added, this page can hold deeper
-            breakdowns without changing the minimal system.
+          <p class="mx-auto mt-7 max-w-2xl text-lg leading-8 text-text-secondary">
+            Tell me what you are building, who it is for, and where the experience feels unclear today.
           </p>
+          <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <a
+              href="mailto:sanchxt.dev@gmail.com?subject=Design%20project"
+              class="inline-flex items-center justify-center rounded-full bg-text-heading px-7 py-3.5 text-sm font-semibold text-page-bg transition-transform duration-200 hover:-translate-y-0.5"
+            >
+              Discuss your project
+            </a>
+            <a
+              href="/videos"
+              class="inline-flex items-center justify-center rounded-full border border-border-default px-7 py-3.5 text-sm font-semibold text-text-heading transition-colors duration-200 hover:bg-section-bg-alt"
+            >
+              See video work
+            </a>
+          </div>
         </div>
-
-        <DesignGallery client:load />
       </section>
     </main>
 
