@@ -13,6 +13,20 @@ const getCdnAssetUrl = (path: string) => (CDN_URL ? `${CDN_URL}/${path}` : "");
 
 const VIDEO_EDITS = [
   {
+    title: "Spider-Man song edit",
+    filename: "spiderman-song-edit.mp4",
+    format: "9:16",
+    category: "Song edit",
+    orientation: "vertical" as const,
+  },
+  {
+    title: "Rhea Seehorn song edit",
+    filename: "song-edit.mp4",
+    format: "9:16",
+    category: "Song edit",
+    orientation: "vertical" as const,
+  },
+  {
     title: "Sports edit",
     filename: "messi-vertical.mp4",
     format: "9:16",
@@ -237,7 +251,7 @@ const PROCESS = [
       <section id="selected-work" class="w-full max-w-7xl mx-auto scroll-mt-24 px-4 py-20 md:py-32">
         <div class="mb-14 grid gap-7 border-t border-border-default pt-7 md:grid-cols-[minmax(0,1fr)_minmax(18rem,0.55fr)] md:items-end">
           <div>
-            <p class="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-text-tertiary">Selected work · 9 edits</p>
+            <p class="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-text-tertiary">Selected work · {VIDEO_EDITS.length} edits</p>
             <h2 class="max-w-4xl text-4xl font-semibold leading-[0.95] tracking-[-0.035em] text-text-heading md:text-6xl">
               A range of pacing, formats, and energy.
             </h2>
