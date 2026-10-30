@@ -2,7 +2,7 @@
 # Builds the web assets for /videos from the original edits on the CDN.
 #   public/videos/posters/<slug>.webp   poster frame, committed
 #   public/videos/previews/<slug>.mp4   short silent loop, committed
-#   video-upload/videos-web/<slug>.mp4  full edit, upload to R2 as videos-web/<slug>.mp4
+#   video-upload/videos-web/<slug>.mp4  full edit, upload to R2 as videos-edits/videos-web/<slug>.mp4
 #
 # Usage: scripts/encode-videos.sh [cache-dir]
 # Keep the list in sync with src/data/videos.ts.

@@ -27,7 +27,7 @@ const edit = (
   format: "9:16",
   poster: `/videos/posters/${slug}.webp`,
   preview: `/videos/previews/${slug}.mp4`,
-  sources: [cdn(`videos-web/${slug}.mp4`), cdn(`videos-edits/${original}`)],
+  sources: [cdn(`videos-edits/videos-web/${slug}.mp4`), cdn(`videos-edits/${original}`)],
 });
 
 export const VIDEO_EDITS: VideoEdit[] = [
