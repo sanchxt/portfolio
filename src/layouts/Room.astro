@@ -1,0 +1,96 @@
+---
+import "@fontsource-variable/archivo/wdth.css";
+import "@fontsource-variable/jetbrains-mono/wght.css";
+import "@fontsource-variable/fraunces/wght-italic.css";
+import "../styles/global.css";
+import Nav from "@/components/system/Nav.astro";
+import Footer from "@/components/system/Footer.astro";
+import type { Room } from "@/data/site";
+
+interface Props {
+  room: Room;
+  title: string;
+  description: string;
+  ogImage?: string;
+}
+
+const { room, title, description, ogImage } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const image = ogImage ? new URL(ogImage, Astro.site).href : undefined;
+const themeColor = { video: "#ffb612", design: "#f6f5f0", engineering: "#f7f5ef" }[room];
+---
+
+<!doctype html>
+<html lang="en" data-room={room}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content={themeColor} />
+    <link rel="icon" type="image/webp" href="/icon.webp" />
+    <link rel="canonical" href={canonical} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {image && <meta property="og:image" content={image} />}
+    <meta name="twitter:card" content={image ? "summary_large_image" : "summary"} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {image && <meta name="twitter:image" content={image} />}
+    <script is:inline>document.documentElement.classList.add("js");</script>
+  </head>
+  <body>
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-60 focus:rounded-room focus:bg-accent focus:px-4 focus:py-2 focus:text-on-accent"
+    >
+      Skip to content
+    </a>
+    <div class="scroll-progress fixed inset-x-0 top-0 z-50 h-0.5 bg-accent" aria-hidden="true"></div>
+    <Nav room={room} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer room={room} />
+
+    <script>
+      const revealed = document.querySelectorAll("[data-reveal]");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            entry.target.classList.add("is-in");
+            observer.unobserve(entry.target);
+          }
+        },
+        { rootMargin: "0px 0px -8% 0px" },
+      );
+      revealed.forEach((element) => observer.observe(element));
+
+      document.querySelectorAll<HTMLButtonElement>("[data-copy]").forEach((button) => {
+        const label = button.textContent;
+        button.addEventListener("click", async () => {
+          await navigator.clipboard.writeText(button.dataset.copy ?? "");
+          button.textContent = "Copied";
+          setTimeout(() => (button.textContent = label), 1600);
+        });
+      });
+
+      const timecode = document.querySelector<HTMLElement>("[data-scroll-timecode]");
+      if (timecode) {
+        const total = Number(timecode.dataset.scrollTimecode);
+        const pad = (value: number) => String(Math.floor(value)).padStart(2, "0");
+        const update = () => {
+          const range = document.documentElement.scrollHeight - innerHeight;
+          const time = range > 0 ? (scrollY / range) * total : 0;
+          timecode.textContent = `00:${pad(time / 60)}:${pad(time % 60)}:${pad((time % 1) * 24)}`;
+        };
+        addEventListener("scroll", update, { passive: true });
+        update();
+      }
+    </script>
+  </body>
+</html>

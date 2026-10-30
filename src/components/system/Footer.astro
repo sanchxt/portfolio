@@ -1,0 +1,58 @@
+---
+import { ROOMS, SOCIALS, type Room } from "@/data/site";
+
+interface Props {
+  room: Room;
+}
+
+const { room } = Astro.props;
+const others = (Object.keys(ROOMS) as Room[]).filter((key) => key !== room);
+---
+
+<footer class="border-t border-line">
+  <div class="shell flex flex-col gap-8 py-10 md:flex-row md:items-end md:justify-between">
+    <div>
+      <p class="text-3xl font-extrabold tracking-tight">sncht.</p>
+      <p class="t-label mt-3 text-faint">
+        Also:
+        {
+          others.map((key, index) => (
+            <>
+              {index > 0 && " / "}
+              <a href={ROOMS[key].href} class="underline underline-offset-4 hover:text-ink">
+                {ROOMS[key].otherLabel}
+              </a>
+            </>
+          ))
+        }
+      </p>
+    </div>
+
+    <ul class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted">
+      {
+        SOCIALS.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block py-1 transition-colors hover:text-ink"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+      <li>
+        <a
+          href="https://newsletter.sanchxt.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block py-1 transition-colors hover:text-ink"
+        >
+          Newsletter
+        </a>
+      </li>
+    </ul>
+  </div>
+</footer>

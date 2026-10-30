@@ -1,0 +1,75 @@
+---
+import { Menu } from "lucide-react";
+import Button from "./Button.astro";
+import { ROOMS, type Room } from "@/data/site";
+import { TOTAL_RUNTIME } from "@/data/videos";
+
+interface Props {
+  room: Room;
+}
+
+const { room } = Astro.props;
+const { label, href, nav, cta } = ROOMS[room];
+---
+
+<header class="fixed inset-x-0 top-0 z-40 border-b border-line bg-bg/85 backdrop-blur-md">
+  <div class="shell flex h-(--nav-height) items-center justify-between gap-4">
+    <a href={href} class="flex items-baseline gap-2" aria-label={`Sanchit, ${label} portfolio home`}>
+      <span class="text-xl font-extrabold tracking-tight">sncht.</span>
+      <span class="t-label hidden text-faint sm:inline">{label}</span>
+    </a>
+
+    {
+      room === "video" && (
+        <span
+          class="t-label hidden text-accent tabular-nums lg:inline"
+          data-scroll-timecode={TOTAL_RUNTIME}
+          aria-hidden="true"
+        >
+          00:00:00:00
+        </span>
+      )
+    }
+
+    <div class="flex items-center gap-2 md:gap-6">
+      <nav class="hidden items-center gap-6 md:flex" aria-label="Page sections">
+        {
+          nav.map((item) => (
+            <a href={item.href} class="text-sm text-muted transition-colors hover:text-ink">
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <details class="group relative md:hidden">
+        <summary
+          class="flex size-11 cursor-pointer list-none items-center justify-center rounded-room border border-line [&::-webkit-details-marker]:hidden"
+          aria-label="Open page sections"
+        >
+          <Menu class="size-5" aria-hidden="true" />
+        </summary>
+        <nav
+          class="absolute right-0 top-full mt-2 flex w-48 flex-col rounded-room border border-line bg-surface p-2"
+          aria-label="Page sections"
+        >
+          {
+            nav.map((item) => (
+              <a href={item.href} class="rounded-room px-3 py-3 text-sm hover:bg-bg">
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+      </details>
+
+      <Button href={cta.href}>{cta.label}</Button>
+    </div>
+  </div>
+</header>
+
+<script>
+  document.querySelectorAll("header details a").forEach((link) => {
+    link.addEventListener("click", () => link.closest("details")?.removeAttribute("open"));
+  });
+</script>

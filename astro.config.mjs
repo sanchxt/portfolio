@@ -5,6 +5,7 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://sanchxt.com',
   integrations: [react()],
   vite: {
     // @ts-ignore - Vite version mismatch between Astro and @tailwindcss/vite

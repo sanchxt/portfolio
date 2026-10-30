@@ -1,37 +1,37 @@
 ---
-import "../styles/global.css";
-import { Navbar } from "@/components/ui/navbar";
-import { Footer } from "@/components/ui/footer";
-import { FluidCursor } from "@/components/ui/fluid-cursor";
-import { DesignGallery } from "@/components/ui/design-gallery";
+import Room from "@/layouts/Room.astro";
+import Button from "@/components/system/Button.astro";
+import SectionHead from "@/components/system/SectionHead.astro";
+import ServiceList from "@/components/system/ServiceList.astro";
+import ProcessSteps from "@/components/system/ProcessSteps.astro";
+import ContactPanel from "@/components/system/ContactPanel.astro";
+import { DesignWall } from "@/components/design/DesignWall";
+import { DESIGN_PROJECTS } from "@/data/designs";
+import { cdn } from "@/data/site";
 
-const DESIGN_SERVICES = [
+const SERVICES = [
   {
-    number: "01",
+    marker: "01",
     title: "Product interfaces",
-    description:
-      "Clear, responsive interfaces for web products, apps, dashboards, and tools—designed to make complex actions feel straightforward.",
+    copy: "Clear, responsive interfaces for web products, apps, dashboards, and tools, designed to make complex actions feel straightforward.",
     details: ["Web apps", "Dashboards", "Responsive UI"],
   },
   {
-    number: "02",
+    marker: "02",
     title: "UX and product flows",
-    description:
-      "Thoughtful journeys, wireframes, onboarding, and product states that help users understand where they are and what comes next.",
+    copy: "Thoughtful journeys, wireframes, onboarding, and product states that help users understand where they are and what comes next.",
     details: ["User flows", "Wireframes", "Onboarding"],
   },
   {
-    number: "03",
+    marker: "03",
     title: "Design systems",
-    description:
-      "Reusable components, type, spacing, color, and interaction rules that keep a product consistent as it grows.",
+    copy: "Reusable components, type, spacing, color, and interaction rules that keep a product consistent as it grows.",
     details: ["Components", "Typography", "UI foundations"],
   },
   {
-    number: "04",
+    marker: "04",
     title: "Visual direction",
-    description:
-      "A distinct visual language for landing pages, launch moments, and branded digital experiences without sacrificing usability.",
+    copy: "A distinct visual language for landing pages, launch moments, and branded digital experiences without sacrificing usability.",
     details: ["Landing pages", "Art direction", "Campaign UI"],
   },
 ];
@@ -59,225 +59,95 @@ const PROCESS = [
   },
 ];
 
-const DESIGN_TOOLS = [
-  "Figma",
-  "FigJam",
-  "Canva",
-  "Photoshop",
-  "Illustrator",
-  "Framer",
-  "AI-assisted workflows",
+const TOOLS = ["Figma", "FigJam", "Canva", "Photoshop", "Illustrator", "Framer", "AI-assisted workflows"];
+
+const HERO_FRAMES = [
+  { src: cdn("design-1.webp"), width: 1662, height: 1080, class: "left-0 top-6 w-[62%] -rotate-2 z-10", delay: "0ms" },
+  { src: cdn("design-4.webp"), width: 1662, height: 1080, class: "right-0 top-0 w-[46%] rotate-2", delay: "120ms" },
+  { src: cdn("design-7.webp"), width: 1784, height: 842, class: "right-[6%] bottom-0 w-[58%] -rotate-1 z-20", delay: "240ms" },
 ];
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/icon.webp" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <meta
-      name="description"
-      content="Selected interface, product, and visual design work by Sanchit."
+<Room
+  room="design"
+  title="Sanchit, UI/UX Designer"
+  description="Selected interface, product, and visual design work by Sanchit. Interfaces that feel clear from the first click."
+>
+  <section class="canvas-dots overflow-hidden pt-(--nav-height)">
+    <div class="shell grid items-center gap-10 py-12 md:py-20 lg:grid-cols-12 lg:gap-8">
+      <div class="lg:col-span-7">
+        <p class="t-label flex items-center gap-2 text-muted">
+          <span class="size-2 rounded-full bg-accent"></span>
+          Product designer / available for projects
+        </p>
+        <h1 class="t-display t-xl animate-rise mt-6 lg:text-[clamp(3.25rem,7.4vw,8rem)]">
+          Interfaces that feel <span class="selected-word"><em>clear</em></span> from the first click.
+        </h1>
+        <p class="t-lede mt-7 max-w-xl">
+          I design digital products that turn complicated ideas into focused, useful experiences,
+          balancing product thinking with a visual system people can understand and trust.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <Button href="#work" size="lg" arrow={false}>See the work</Button>
+          <Button href="#contact" size="lg" variant="ghost" arrow={false}>Start a project</Button>
+        </div>
+      </div>
+
+      <div class="relative aspect-5/4 lg:col-span-5" aria-hidden="true">
+        {
+          HERO_FRAMES.map((frame) => (
+            <img
+              src={frame.src}
+              width={frame.width}
+              height={frame.height}
+              alt=""
+              style={{ animationDelay: frame.delay }}
+              class:list={[
+                "animate-rise absolute h-auto rounded-room border border-line bg-surface shadow-[0_24px_60px_rgb(21_20_15/0.18)]",
+                frame.class,
+              ]}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="work" class="section shell">
+    <SectionHead
+      label="Selected work"
+      title="Interface, layout, and visual direction."
+      lede="Landing pages, pricing, marketing sites, and colour work. Open any frame to see it full size."
     />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Design Work — Sanchit" />
-    <meta
-      property="og:description"
-      content="Clear digital experiences shaped around product thinking, visual systems, and the people using them."
+    <DesignWall client:visible projects={DESIGN_PROJECTS} />
+  </section>
+
+  <section id="services" class="section shell pt-0">
+    <SectionHead
+      label="Design capabilities"
+      title="From the first flow to the <em>finished</em> interface."
+      lede="I can help shape the structure, the visual language, or the full experience, wherever the product needs clarity."
     />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Design Work — Sanchit" />
-    <meta
-      name="twitter:description"
-      content="Clear digital experiences shaped around product thinking, visual systems, and the people using them."
+    <ServiceList items={SERVICES} />
+    <p class="t-label mt-8 text-faint">Toolkit: {TOOLS.join(" / ")}</p>
+  </section>
+
+  <section id="process" class="section shell pt-0">
+    <SectionHead
+      label="A clear process"
+      title="From product question to build-ready design."
+      lede="Enough structure to stay aligned, with room to explore the details that make the experience feel distinct."
     />
-    <title>Design Work — Sanchit</title>
-  </head>
-  <body class="bg-page-bg">
-    <FluidCursor client:load />
-    <Navbar client:load />
+    <ProcessSteps steps={PROCESS} />
+  </section>
 
-    <main class="min-h-screen w-full overflow-x-hidden pt-32 pb-24">
-      <section class="w-full max-w-7xl mx-auto px-4 py-12 md:py-24">
-        <div class="overflow-hidden rounded-[2rem] border border-border-default bg-section-bg-alt px-5 py-7 md:px-10 md:py-12 lg:px-14 lg:py-16">
-          <div class="mb-14 flex flex-wrap items-center justify-between gap-4 text-xs font-semibold uppercase tracking-[0.18em] text-text-tertiary">
-            <span>Product designer · selected work</span>
-            <span class="inline-flex items-center gap-2">
-              <span class="h-2 w-2 rounded-full bg-text-heading"></span>
-              Available for projects
-            </span>
-          </div>
-
-          <div class="grid gap-12 lg:grid-cols-[minmax(0,1.25fr)_minmax(18rem,0.55fr)] lg:items-end">
-            <div>
-              <h1 class="max-w-5xl text-[clamp(3.6rem,9vw,8.5rem)] font-semibold leading-[0.86] tracking-[-0.055em] text-text-heading">
-                Interfaces that feel clear from the first click.
-              </h1>
-              <p class="mt-8 max-w-2xl text-lg leading-8 text-text-secondary md:text-xl">
-                I design digital products that turn complicated ideas into
-                focused, useful experiences—balancing product thinking with a
-                visual system people can understand and trust.
-              </p>
-            </div>
-
-            <div class="border-t border-border-default pt-7 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
-              <p class="text-sm font-semibold uppercase tracking-[0.16em] text-text-tertiary">
-                What I design
-              </p>
-              <p class="mt-4 text-2xl font-semibold leading-tight text-text-heading md:text-3xl">
-                Product interfaces, UX flows, design systems, and landing experiences.
-              </p>
-              <div class="mt-8 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
-                <a
-                  href="#selected-designs"
-                  class="inline-flex items-center justify-center rounded-full bg-text-heading px-6 py-3 text-sm font-semibold text-page-bg transition-transform duration-200 hover:-translate-y-0.5"
-                >
-                  Explore selected work
-                </a>
-                <a
-                  href="mailto:sanchxt.dev@gmail.com?subject=Design%20project"
-                  class="inline-flex items-center justify-center rounded-full border border-border-default px-6 py-3 text-sm font-semibold text-text-heading transition-colors duration-200 hover:bg-page-bg"
-                >
-                  Start a project
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-14 grid border-t border-border-default pt-7 sm:grid-cols-3">
-            <p class="py-2 text-sm font-medium text-text-secondary">Product thinking</p>
-            <p class="border-border-default py-2 text-sm font-medium text-text-secondary sm:border-l sm:pl-6">Interface design</p>
-            <p class="border-border-default py-2 text-sm font-medium text-text-secondary sm:border-l sm:pl-6">Visual systems</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="selected-designs" class="w-full max-w-7xl mx-auto scroll-mt-24 px-4 py-20 md:py-32">
-        <div class="mb-14 grid gap-7 border-t border-border-default pt-7 md:grid-cols-[minmax(0,1fr)_minmax(18rem,0.55fr)] md:items-end">
-          <div>
-            <p class="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-text-tertiary">Selected visual work</p>
-            <h2 class="max-w-4xl text-4xl font-semibold leading-[0.95] tracking-[-0.035em] text-text-heading md:text-6xl">
-              Explorations in interface, layout, and visual direction.
-            </h2>
-          </div>
-          <p class="max-w-xl text-base leading-7 text-text-secondary md:justify-self-end md:text-lg">
-            Drag or scroll through a collection of digital design work spanning
-            products, web experiences, and visual systems.
-          </p>
-        </div>
-
-        <DesignGallery />
-      </section>
-
-      <section class="w-full max-w-7xl mx-auto px-4 py-20 md:py-32">
-        <div class="rounded-[2rem] bg-text-heading px-5 py-8 text-page-bg md:px-10 md:py-12 lg:px-14 lg:py-16">
-          <div class="grid gap-8 border-b border-page-bg/20 pb-10 md:grid-cols-2 md:items-end">
-            <div>
-              <p class="mb-4 text-xs font-semibold uppercase tracking-[0.18em] opacity-60">Design capabilities</p>
-              <h2 class="text-4xl font-semibold leading-[0.95] tracking-[-0.035em] md:text-6xl">
-                From the first flow to the finished interface.
-              </h2>
-            </div>
-            <p class="max-w-xl text-base leading-7 opacity-70 md:justify-self-end md:text-lg">
-              I can help shape the structure, the visual language, or the full
-              experience—wherever the product needs clarity.
-            </p>
-          </div>
-
-          <div class="grid md:grid-cols-2">
-            {
-              DESIGN_SERVICES.map((service) => (
-                <article class="border-b border-page-bg/20 py-8 md:px-8 md:first:pl-0 md:[&:nth-child(even)]:border-l md:[&:nth-child(odd)]:pl-0">
-                  <p class="text-xs font-semibold tracking-[0.18em] opacity-50">{service.number}</p>
-                  <h3 class="mt-8 text-2xl font-semibold md:text-3xl">{service.title}</h3>
-                  <p class="mt-4 max-w-xl leading-7 opacity-70">{service.description}</p>
-                  <div class="mt-6 flex flex-wrap gap-2">
-                    {service.details.map((detail) => (
-                      <span class="rounded-full border border-page-bg/20 px-3 py-1 text-xs font-semibold opacity-70">{detail}</span>
-                    ))}
-                  </div>
-                </article>
-              ))
-            }
-          </div>
-        </div>
-      </section>
-
-      <section class="w-full max-w-7xl mx-auto px-4 py-20 md:py-28">
-        <div class="grid gap-10 border-t border-border-default pt-8 lg:grid-cols-[minmax(0,0.65fr)_minmax(0,1.35fr)]">
-          <div>
-            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-text-tertiary">Design toolkit</p>
-            <h2 class="mt-4 max-w-md text-4xl font-semibold leading-tight tracking-[-0.03em] text-text-heading md:text-5xl">
-              Tools I design with.
-            </h2>
-            <p class="mt-5 max-w-md leading-7 text-text-secondary">
-              A practical toolkit for product thinking, interface design, visual exploration, prototyping, and faster creative iteration.
-            </p>
-          </div>
-
-          <div class="flex flex-wrap content-start gap-3 lg:justify-end">
-            {
-              DESIGN_TOOLS.map((tool, index) => (
-                <span class="inline-flex items-center gap-3 rounded-full border border-border-default px-5 py-3 text-base font-semibold text-text-heading md:px-7 md:py-4 md:text-xl">
-                  <span class="text-xs text-text-tertiary">0{index + 1}</span>
-                  {tool}
-                </span>
-              ))
-            }
-          </div>
-        </div>
-      </section>
-
-      <section class="w-full max-w-7xl mx-auto px-4 py-20 md:py-28">
-        <div class="mb-12 flex flex-col gap-5 border-t border-border-default pt-8 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-text-tertiary">A clear process</p>
-            <h2 class="mt-4 text-4xl font-semibold tracking-[-0.03em] text-text-heading md:text-5xl">From product question to build-ready design.</h2>
-          </div>
-          <p class="max-w-md leading-7 text-text-secondary">Enough structure to stay aligned, with room to explore the details that make the experience feel distinct.</p>
-        </div>
-
-        <div class="grid gap-px overflow-hidden rounded-[1.5rem] border border-border-default bg-border-default md:grid-cols-2 lg:grid-cols-4">
-          {
-            PROCESS.map((item) => (
-              <article class="min-h-72 bg-page-bg p-6 md:p-8">
-                <p class="text-xs font-semibold tracking-[0.18em] text-text-tertiary">{item.step}</p>
-                <h3 class="mt-16 text-2xl font-semibold text-text-heading">{item.title}</h3>
-                <p class="mt-4 leading-7 text-text-secondary">{item.copy}</p>
-              </article>
-            ))
-          }
-        </div>
-      </section>
-
-      <section class="w-full max-w-7xl mx-auto px-4 py-20 md:py-32">
-        <div class="rounded-[2rem] border border-border-default px-5 py-10 text-center md:px-12 md:py-20">
-          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-text-tertiary">Building something new?</p>
-          <h2 class="mx-auto mt-6 max-w-5xl text-5xl font-semibold leading-[0.92] tracking-[-0.045em] text-text-heading md:text-7xl">
-            Let’s make the experience easier to understand—and harder to forget.
-          </h2>
-          <p class="mx-auto mt-7 max-w-2xl text-lg leading-8 text-text-secondary">
-            Tell me what you are building, who it is for, and where the experience feels unclear today.
-          </p>
-          <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a
-              href="mailto:sanchxt.dev@gmail.com?subject=Design%20project"
-              class="inline-flex items-center justify-center rounded-full bg-text-heading px-7 py-3.5 text-sm font-semibold text-page-bg transition-transform duration-200 hover:-translate-y-0.5"
-            >
-              Discuss your project
-            </a>
-            <a
-              href="/videos"
-              class="inline-flex items-center justify-center rounded-full border border-border-default px-7 py-3.5 text-sm font-semibold text-text-heading transition-colors duration-200 hover:bg-section-bg-alt"
-            >
-              See video work
-            </a>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <Footer />
-  </body>
-</html>
+  <ContactPanel
+    label="Building something new?"
+    title="Let's make it easier to understand and <em>harder to forget.</em>"
+    lede="Tell me what you are building, who it is for, and where the experience feels unclear today."
+    subject="Design project"
+    cta="Discuss your project"
+    briefTitle="Useful to include"
+    brief={["What you are building", "Who it is for", "Where it feels unclear today", "A product you admire", "When you need it"]}
+  />
+</Room>

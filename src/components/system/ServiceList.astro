@@ -1,0 +1,27 @@
+---
+interface Props {
+  items: { marker: string; title: string; copy: string; details?: string[] }[];
+}
+
+const { items } = Astro.props;
+---
+
+<ul class="border-b border-line">
+  {
+    items.map((item) => (
+      <li
+        class="group grid gap-3 border-t border-line py-7 transition-colors duration-150 hover:bg-surface md:py-9 lg:grid-cols-12 lg:gap-6"
+        data-reveal
+      >
+        <p class="t-label text-accent lg:col-span-3 lg:px-3">{item.marker}</p>
+        <h3 class="t-display t-md lg:col-span-4">{item.title}</h3>
+        <div class="lg:col-span-5 lg:pr-3">
+          <p class="max-w-xl leading-relaxed text-muted">{item.copy}</p>
+          {item.details && (
+            <p class="t-label mt-4 text-faint">{item.details.join(" / ")}</p>
+          )}
+        </div>
+      </li>
+    ))
+  }
+</ul>

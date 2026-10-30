@@ -1,0 +1,46 @@
+---
+import { ArrowUpRight } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+interface Props {
+  href: string;
+  variant?: "solid" | "ghost";
+  size?: "md" | "lg";
+  external?: boolean;
+  arrow?: boolean;
+  class?: string;
+}
+
+const {
+  href,
+  variant = "solid",
+  size = "md",
+  external = false,
+  arrow = true,
+  class: className,
+} = Astro.props;
+---
+
+<a
+  href={href}
+  target={external ? "_blank" : undefined}
+  rel={external ? "noopener noreferrer" : undefined}
+  class={cn(
+    "group inline-flex min-h-11 items-center justify-center gap-2 rounded-room font-medium transition-colors duration-150",
+    size === "md" ? "px-4 py-2 text-sm" : "px-6 py-4 text-base md:text-lg",
+    variant === "solid"
+      ? "bg-accent text-on-accent hover:bg-accent-hover hover:text-on-accent-hover"
+      : "border border-line text-ink hover:border-ink",
+    className,
+  )}
+>
+  <slot />
+  {
+    arrow && (
+      <ArrowUpRight
+        class="size-4 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+        aria-hidden="true"
+      />
+    )
+  }
+</a>

@@ -1,0 +1,45 @@
+---
+import Button from "./Button.astro";
+import { EMAIL, mailto } from "@/data/site";
+
+interface Props {
+  label: string;
+  title: string;
+  lede: string;
+  subject: string;
+  cta: string;
+  briefTitle: string;
+  brief: string[];
+}
+
+const { label, title, lede, subject, cta, briefTitle, brief } = Astro.props;
+const body = `${brief.map((item) => `${item}:\n`).join("\n")}`;
+---
+
+<section id="contact" class="section shell">
+  <div class="grid gap-12 border-t border-line pt-5 lg:grid-cols-12">
+    <div class="lg:col-span-8">
+      <p class="t-label text-faint">{label}</p>
+      <h2 class="t-display t-lg mt-6 max-w-[16ch]" set:html={title} />
+      <p class="t-lede mt-6 max-w-xl">{lede}</p>
+      <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+        <Button href={mailto(subject, body)} size="lg">{cta}</Button>
+        <button
+          type="button"
+          data-copy={EMAIL}
+          class="min-h-11 rounded-room border border-line px-6 py-4 text-base transition-colors hover:border-ink"
+        >
+          Copy email
+        </button>
+      </div>
+      <p class="t-label mt-5 break-all text-faint">{EMAIL}</p>
+    </div>
+
+    <div class="self-end rounded-room border border-line bg-surface p-6 lg:col-span-4">
+      <h3 class="t-label text-faint">{briefTitle}</h3>
+      <ul class="mt-4 divide-y divide-line">
+        {brief.map((item) => <li class="py-3 text-sm">{item}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>

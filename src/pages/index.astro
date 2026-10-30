@@ -1,53 +1,214 @@
 ---
-import "../styles/global.css";
-import { Navbar } from "@/components/ui/navbar";
-import { Hero } from "@/components/ui/hero";
-import { HeroNav } from "@/components/ui/hero-nav";
-import { About } from "@/components/ui/about";
-import { WorkExperience } from "@/components/ui/work-experience";
-import { Projects } from "@/components/ui/projects";
-import { DesignShowcase } from "@/components/ui/design-showcase";
-import { Contact } from "@/components/ui/contact";
-import { Footer } from "@/components/ui/footer";
-import { FluidCursor } from "@/components/ui/fluid-cursor";
+import { Github } from "lucide-react";
+import Room from "@/layouts/Room.astro";
+import Button from "@/components/system/Button.astro";
+import SectionHead from "@/components/system/SectionHead.astro";
+import ServiceList from "@/components/system/ServiceList.astro";
+import { MessageBox } from "@/components/engineering/MessageBox";
+import { AGENT_TRACE, CAPABILITIES, EXPERIENCE, PROJECTS, STACK } from "@/data/engineering";
+
+const STOCKS = ["#efe0bc", "#f0c4b4", "#c9dfc0"];
+const HERO_PRODUCTS = PROJECTS.slice(0, 2).reverse();
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/icon.webp" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Sanchit - Engineer, Designer, Video Editor</title>
-	</head>
-	<body class="bg-page-bg">
-		<FluidCursor client:load />
-		<Navbar client:load />
-		<section class="min-h-screen flex flex-col items-center justify-center px-4 gap-20">
-			<Hero client:load />
-			<HeroNav client:load />
-		</section>
-		
-		<div id="about">
-			<About client:visible />
-		</div>
+<Room
+  room="engineering"
+  title="Sanchit Bhalla, AI Engineer"
+  description="AI engineer building LLM product features, RAG systems, and agents with tool calling, from prototype to production."
+>
+  <section class="pt-(--nav-height)">
+    <div class="shell pt-10 md:pt-14">
+      <p class="t-label mb-5 text-muted">Sanchit Bhalla / AI engineer</p>
+      <h1 class="t-display t-xl animate-rise">
+        I build AI that still works after the demo.
+      </h1>
+      <div class="mt-7 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <p class="t-lede max-w-xl">
+          LLM features, RAG systems, and agents with real tools, taken from prototype to production
+          by someone who also owns the backend, the pipeline, and the server they run on.
+        </p>
+        <div class="flex shrink-0 flex-wrap gap-3">
+          <Button href="#projects" size="lg" arrow={false}>See my work</Button>
+          <Button href="https://github.com/sanchxt" size="lg" variant="ghost" external>GitHub</Button>
+        </div>
+      </div>
 
-		<div id="work">
-			<WorkExperience client:visible />
-		</div>
+      <div class="mt-10 grid gap-5 md:mt-14 md:grid-cols-2">
+        {
+          HERO_PRODUCTS.map((product) => (
+            <a
+              href={product.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group block min-w-0"
+            >
+              <span class="block overflow-hidden rounded-room border border-line bg-surface">
+                <img
+                  src={product.image}
+                  alt={`${product.title} product preview`}
+                  width={product.width}
+                  height={product.height}
+                  decoding="async"
+                  class="aspect-video w-full object-cover object-top transition-transform duration-500 ease-out-soft group-hover:scale-[1.02]"
+                />
+              </span>
+              <span class="mt-3 flex items-baseline justify-between gap-4">
+                <span class="font-semibold">{product.title}</span>
+                <span class="t-label text-faint">{product.kind}</span>
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 
-		<div id="projects">
-			<Projects client:visible />
-		</div>
+  <section id="ai" class="section shell">
+    <SectionHead label="What I build" title="AI inside real products." />
+    <ServiceList items={CAPABILITIES} />
+  </section>
 
-		<div id="design">
-			<DesignShowcase client:visible />
-		</div>
+  <section class="section shell pt-0">
+    <SectionHead
+      label="How I work"
+      title="Every step is one you can inspect."
+      lede="An example of how I structure an agent run, so you can see what it did, why, and where a person stays in control."
+    />
+    <ol class="border-b border-line">
+      {
+        AGENT_TRACE.map((line, index) => (
+          <li class="grid gap-1 border-t border-line py-4 sm:grid-cols-12 sm:gap-6" data-reveal>
+            <span class="t-label text-faint sm:col-span-1">{String(index + 1).padStart(2, "0")}</span>
+            <span class="font-semibold sm:col-span-3">{line.step}</span>
+            <span class="text-muted sm:col-span-8">{line.detail}</span>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
 
-		<div id="contact">
-			<Contact client:visible />
-		</div>
+  <section id="projects" class="section shell pt-0">
+    <SectionHead
+      label="Projects"
+      title="What I've shipped."
+      lede="Two AI products and a Rust networking tool, all live right now."
+    />
 
-		<Footer />
-	</body>
-</html>
+    <div class="deck">
+      {
+        PROJECTS.map((project, index) => (
+          <article
+            class="deck-card card-stock"
+            style={{ "--stock": STOCKS[index], "--deck-index": index }}
+          >
+            <p class="t-label text-muted">
+              {String(index + 1).padStart(2, "0")} / {project.kind}
+            </p>
+            <h3 class="t-display t-lg mt-2">{project.title}</h3>
+
+            <div class="mt-6 grid gap-6 lg:grid-cols-12 lg:gap-10">
+              <div class="flex min-w-0 flex-col lg:col-span-5">
+                <p class="max-w-xl leading-relaxed text-muted">{project.description}</p>
+                <p class="t-label mt-4 text-faint">{project.tags.join(" / ")}</p>
+                <div class="mt-6 flex flex-wrap gap-3 lg:mt-auto lg:pt-6">
+                  <Button href={project.liveUrl} external>View live</Button>
+                  {
+                    project.githubUrl && (
+                      <Button href={project.githubUrl} variant="ghost" external arrow={false}>
+                        <Github class="size-4" aria-hidden="true" />
+                        Source
+                      </Button>
+                    )
+                  }
+                </div>
+              </div>
+
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open ${project.title}`}
+                class="group block min-w-0 overflow-hidden rounded-room border border-line lg:col-span-7"
+              >
+                <img
+                  src={project.image}
+                  alt={`${project.title} preview`}
+                  width={project.width}
+                  height={project.height}
+                  loading="lazy"
+                  decoding="async"
+                  class="aspect-video w-full object-cover object-top transition-transform duration-500 ease-out-soft group-hover:scale-[1.02]"
+                />
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section id="experience" class="section shell pt-0">
+    <SectionHead label="Experience" title="Where I've worked." />
+    <ol class="border-b border-line">
+      {
+        EXPERIENCE.map((job) => (
+          <li class="grid gap-3 border-t border-line py-8 lg:grid-cols-12 lg:gap-6" data-reveal>
+            <p class="t-label text-faint lg:col-span-3">{job.period}</p>
+            <h3 class="text-xl font-semibold tracking-tight md:text-2xl lg:col-span-4">
+              {job.role}, {job.company}
+            </h3>
+            <p class="max-w-xl leading-relaxed text-muted lg:col-span-5">{job.description}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section id="stack" class="section shell pt-0">
+    <SectionHead label="Stack" title="What I work with." />
+    <dl class="border-b border-line">
+      {
+        STACK.map((entry) => (
+          <div class="grid gap-1 border-t border-line py-4 sm:grid-cols-12 sm:gap-6">
+            <dt class="t-label text-faint sm:col-span-3">{entry.group}</dt>
+            <dd class="font-medium sm:col-span-9">{entry.items.join(", ")}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <section class="shell pb-(--section-space)">
+    <div class="grid items-center gap-8 border-t border-line pt-5 lg:grid-cols-12" data-reveal>
+      <p class="t-label self-start text-faint lg:col-span-3">About</p>
+      <p class="t-lede lg:col-span-7">
+        A model is the easy part. I care about everything around it: the data it sees, the tools it
+        can touch, how you find out when it gets worse, and an interface people actually trust.
+        Coming from full-stack and infrastructure work, I build all of that myself.
+      </p>
+      <img
+        src="/images/portrait.webp"
+        alt="An illustration of a man, representing Sanchit Bhalla, saying hello by waving a hand"
+        width="450"
+        height="533"
+        loading="lazy"
+        class="w-24 lg:col-span-2 lg:justify-self-end"
+      />
+    </div>
+  </section>
+
+  <section id="contact" class="section shell pt-0">
+    <div class="grid gap-10 border-t border-line pt-5 lg:grid-cols-12">
+      <div class="lg:col-span-6">
+        <p class="t-label text-faint">Contact</p>
+        <h2 class="t-display t-lg mt-6">Have an AI feature in mind?</h2>
+        <p class="t-lede mt-6 max-w-xl">
+          If you have a product, a role, or a hard problem, tell me about it.
+        </p>
+      </div>
+      <div class="self-end lg:col-span-6">
+        <MessageBox client:visible />
+      </div>
+    </div>
+  </section>
+</Room>

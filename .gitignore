@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# video encode output, uploaded to R2 by hand
+video-upload/
+.video-cache/
